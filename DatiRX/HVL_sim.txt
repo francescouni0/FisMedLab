@@ -1,0 +1,35 @@
+I_tubo[mA]=?
+t_esposizione[ms]=?
+rho_Al[g/cm3]=2.699
+
+HVL[mm]
+HVL@40	1.62mm
+HVL@52	2.265mm
+HVL@64	2.826mm
+HVL@76	3.373mm
+HVL@88	3.910mm
+HVL@100	4.415mm
+
+mu[cm-1]
+mu@40		4.278
+mu@52		3.060
+mu@64		2.453
+mu@76		2.055
+mu@88		1.772
+mu@100	1.570
+
+mu/rho[cm2/g]
+mu/rho@40	1.585
+mu/rho@52	1.134
+mu/rho@64	0.909
+mu/rho@76	0.761
+mu/rho@88	0.657
+mu/rho@100	0.582
+
+E_eq[keV]
+E_eq@40	26.26	(@4.274)
+E_eq@52	30.01	(@3.013)
+E_eq@64	32.08	(@2.548)
+E_eq@76	35.48	(media 2.165-1.850)
+E_eq@88	37.95	(media 1.850-1.593)
+E_eq@100	39.20	(@1.593)
