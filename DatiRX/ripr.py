@@ -12,7 +12,7 @@ D_aria, counts = np.unique(data, return_counts=True)
 plt.figure(1)
 plt.scatter(D_aria, counts)
 
-# Istogramma
+# Histogram
 plt.figure(2)
 plt.hist(data, bins=18)
 
