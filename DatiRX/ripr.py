@@ -20,3 +20,7 @@ plt.show()
 
 
 ciaociao
+scsipajnanfcsa
+ascapsikna
+asnfkaò
+awfkaòn
