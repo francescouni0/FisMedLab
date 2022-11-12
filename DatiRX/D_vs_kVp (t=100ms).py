@@ -26,6 +26,7 @@ plt.errorbar(kVp, Dose, yerr=sigma_D, fmt='none', ecolor='black', barsabove=True
 plt.title('Dose vs Tube Voltage')
 plt.xlabel('Voltage[kV]')
 plt.ylabel('Dose[uGy]')
+plt.legend()
 
 Dose_fit = fit_func(kVp, *params)
 residuals = Dose - Dose_fit

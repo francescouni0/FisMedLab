@@ -26,6 +26,7 @@ plt.errorbar(Esp, Dose, yerr=sigma_D, fmt='none', ecolor='black', barsabove=True
 plt.title('Dose vs Time')
 plt.xlabel('Time[ms]')
 plt.ylabel('Dose[uGy]')
+plt.legend()
 
 Dose_fit = fit_func(Esp, *params)
 residuals = Dose - Dose_fit
