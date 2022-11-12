@@ -10,32 +10,35 @@ def fit_func(x, m, b):
 
 Path.cwd()
 
+Err_perc = 0.028
+
 data = np.loadtxt('D_vs_I.txt', skiprows=8)
-print(np.shape(data))
 I = data[:, 0]
 Dose = data[:, 1]
-Dd = Dose*0.01
-print(Dose.shape)
-print(I.shape)
+sigma_D = Dose*Err_perc
 
-params, params_cov = optimize.curve_fit(fit_func, I, Dose, sigma=Dd)
-print(params)
-'''
-coeff = np.polyfit(I, Dose, 1)
-print(f'y=A*x+B \nA: {coeff[0]} \nB: {coeff[1]}')
-chi_squared = np.sum((np.polyval(coeff, I) - Dose) ** 2)
-dof = len(Dose)-len(coeff)
-chi_reduced = chi_squared/dof
-print(f'Chi Squared: {chi_squared} \nDegree of freedom: {dof} \nChi Reduced: {chi_reduced}')
+params = optimize.curve_fit(fit_func, I, Dose, sigma=sigma_D, full_output=True)[0]
+print(f'Model: y=m*x+b \nSlope: m={params[0]} \nIntercept: b={params[1]}')
 
-xn = np.linspace(min(I), max(I), 100)
-yn = np.poly1d(coeff)
-plt.plot(xn, yn(xn), '-r', I, Dose, 'og')
-'''
-plt.errorbar()
-plt.errorbar(I, fit_func(I, *params), I, Dose, yerr=Dd)
-
+plt.figure()
+plt.plot(I, fit_func(I, *params), 'r-', label='Fit')
+plt.errorbar(I, Dose, yerr=sigma_D, fmt='none', ecolor='black', barsabove=True, label='Dose')
 plt.title('Dose vs Tube Current')
 plt.xlabel('Current[mA]')
 plt.ylabel('Dose[uGy]')
+plt.legend()
+
+Dose_fit = fit_func(I, *params)
+residuals = Dose - Dose_fit
+plt.figure()
+plt.plot(I, residuals, 'bo')
+plt.title('Residuals plot')
+plt.xlabel('Current[mA]')
+plt.ylabel('Residual[a.u.]')
+
+chi_squared = np.sum((residuals/sigma_D)**2)
+dof = len(Dose)-len(params)
+chi_reduced = chi_squared/dof
+print(f'Chi Squared: {chi_squared} \nDegree of freedom: {dof} \nChi Reduced: {chi_reduced}')
+
 plt.show()
