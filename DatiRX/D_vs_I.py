@@ -32,8 +32,7 @@ xn = np.linspace(min(I), max(I), 100)
 yn = np.poly1d(coeff)
 plt.plot(xn, yn(xn), '-r', I, Dose, 'og')
 '''
-plt.errorbar()
-plt.errorbar(I, fit_func(I, *params), I, Dose, yerr=Dd)
+plt.errorbar(I, fit_func(I, *params), yerr=Dd)
 
 plt.title('Dose vs Tube Current')
 plt.xlabel('Current[mA]')
