@@ -7,10 +7,10 @@ from uncertainties import ufloat
 
 Path.cwd()
 
-data = np.loadtxt('F1--guadagnov1--00000.txt',delimiter=',')
-x=data[:,0]
-y=data[:,1]
+data = np.loadtxt('F1--guadagnov1--00000.txt', delimiter=',')
+x = data[:, 0]
+y = data[:, 1]
 print(data)
 
-plt.plot(x,y)
+plt.plot(x, y)
 plt.show()
