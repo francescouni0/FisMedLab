@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from lmfit.models import LorentzianModel, QuadraticModel
+from lmfit.models import LorentzianModel, QuadraticModel, GaussianModel
 from scipy.optimize import leastsq
 from pathlib import Path
 
@@ -11,7 +11,7 @@ xdat = data[:, 0]
 ydat = data[:, 1]
 
 
-def add_peak(prefix, center, amplitude=140, sigma=2.2e-10):
+def add_peak(prefix, center,amplitude=100, sigma=3e-10):
     
     peak = LorentzianModel(prefix=prefix)
     pars = peak.make_params()
@@ -20,7 +20,7 @@ def add_peak(prefix, center, amplitude=140, sigma=2.2e-10):
     pars[prefix + 'sigma'].set(sigma, min=0)
     return peak, pars
 
-model = QuadraticModel(prefix='bkg_')
+model = LorentzianModel(prefix='bkg_')
 params = model.make_params(a=0, b=0, c=0)
 
 rough_peak_positions = (0.10e-8, 0.30e-8, 0.50e-8, 0.60e-8, 0.80e-8, 1e-8)
@@ -35,7 +35,7 @@ comps = result.eval_components()
 
 print(result.fit_report(min_correl=0.5))
 
-plt.plot(xdat, ydat, label='data')
+plt.scatter(xdat, ydat, label='data')
 plt.plot(xdat, result.best_fit, label='best fit')
 
 
