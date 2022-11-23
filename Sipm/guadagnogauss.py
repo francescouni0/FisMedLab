@@ -3,42 +3,44 @@ import numpy as np
 from lmfit.models import LorentzianModel, QuadraticModel, GaussianModel
 from scipy.optimize import leastsq, curve_fit
 from pathlib import Path
-from sklearn.mixture import GaussianMixture
+from scipy.integrate import simpson
+from numpy import trapz
+
 
 Path.cwd()
 
 data = np.loadtxt('F1--guadagnov1--00000.txt', delimiter=',')
-x1 = data[:, 0]
+x1 = data[:, 0]*1e9
 y1 = data[:, 1]
 #x1=x1[x1>0]
 #y1=y1[72:492]
 data = np.loadtxt('F1--guadagnov2--00000.txt', delimiter=',')
-x2 = data[:, 0]
+x2 = data[:, 0]*1e9
 y2 = data[:, 1]
 #x2=x2[x2>0]
 #y2=y2[72:492]
 data = np.loadtxt('F1--guadagnov3--00000.txt', delimiter=',')
-x3 = data[:, 0]
+x3 = data[:, 0]*1e9
 y3 = data[:, 1]
 #x3=x3[x3>0]
 #y3=y3[72:492]
 data = np.loadtxt('F1--guadagnov4--00000.txt', delimiter=',')
-x4 = data[:, 0]
+x4 = data[:, 0]*1e9
 y4= data[:, 1]
 #x4=x4[x4>0]
 #y4=y4[72:492]
 data = np.loadtxt('F1--guadagnov5--00000.txt', delimiter=',')
-x5 = data[:, 0]
+x5 = data[:, 0]*1e9
 y5 = data[:, 1]
 #x5=x5[x5>0]
 #y5=y5[72:492]
 data = np.loadtxt('F1--guadagnov6--00000.txt', delimiter=',')
-x6 = data[:, 0]
+x6 = data[:, 0]*1e9
 y6 = data[:, 1]
 #x6=x6[x6>0]
 #y6=y6[72:492]
 data = np.loadtxt('F1--guadagnov7--00000.txt', delimiter=',')
-x7 = data[:, 0]
+x7 = data[:, 0]*1e9
 y7 = data[:, 1]
 #x7=x7[x7>0]
 #y7=y7[72:492]
@@ -55,17 +57,23 @@ def func(x, *params):
         y = y + amp * np.exp( -((x - ctr)/wid)**2)
     return y
 
+print(x3.shape)
 
-guess1 = [0.10e-8, 60, 2e-11,0.30e-8, 60, 2e-11,0.50e-8, 60, 2e-11,0.60e-8, 60, 2e-11,0.80e-8, 60, 2e-11,1e-8, 60, 2e-11]
-guess2 = [0.10e-8, 60, 2e-11,0.30e-8, 60, 2e-11,0.50e-8, 60, 2e-11,0.60e-8, 60, 2e-11,0.80e-8, 60, 2e-11,1e-8, 60, 2e-11]
-guess3 = [0.10e-8, 60, 2e-11,0.30e-8, 60, 2e-11,0.50e-8, 60, 2e-11,0.60e-8, 60, 2e-11,0.80e-8, 60, 2e-11,1e-8, 60, 2e-11]
-guess4 = [0.10e-8, 60, 2e-11,0.30e-8, 60, 2e-11,0.50e-8, 60, 2e-11,0.60e-8, 60, 2e-11,0.90e-8, 60, 2e-11,1.10e-8, 60, 2e-11]
-guess5 = [0.10e-8, 60, 2e-11,0.30e-8, 60, 2e-11,0.50e-8, 60, 2e-11,0.60e-8, 60, 2e-11,0.80e-8, 60, 2e-11,1e-8, 60, 2e-11]
-guess6 = [0.10e-8, 60, 2e-11,0.30e-8, 60, 2e-11,0.50e-8, 60, 2e-11,0.60e-8, 60, 2e-11,0.80e-8, 60, 2e-11,1e-8, 60, 2e-11]
-guess7 = [0.10e-8, 60, 2e-11,0.30e-8, 60, 2e-11,0.50e-8, 60, 2e-11,0.60e-8, 60, 2e-11,0.80e-8, 60, 2e-11,1e-8, 60, 2e-11]
+
+
+guess1 = [0, 60, 2e-2,2, 60, 2e-2,3, 160, 2e-2,4 ,80, 2e-2,6, 60, 2e-2,7, 60, 2e-2,7.5, 60, 2e-2,8, 60, 2e-1]
+guess2 = [1.4, 60, 2e-2,2.9, 60, 2e-2,4.4, 60, 2e-2,6 ,60, 2e-2,7.5, 60, 2e-2,8.8, 60, 2e-2,10.2, 60, 2e-2,12, 60, 2e-1]
+guess3 = [1.5, 60, 2e-2,3.2, 60, 2e-2,5, 60, 2e-2,6.8 ,60, 2e-2,8.5,60,2e-2,10.1,60,2e-2,11, 60, 2e-2,13, 60, 2e-1]
+guess4 = [1.3, 60, 2e-2,3.5, 60, 2e-2,5.4, 60, 2e-2,7.64 ,60, 2e-2,9.4, 60, 2e-2,11.5,60,2e-2,13.5, 60, 2e-2,15,60,2e-2]
+guess5 = [1, 60, 2e-2,4, 60, 2e-2,6, 60, 2e-2,8 ,60, 2e-2,11, 60, 2e-2,13, 60, 2e-2,15, 60, 2e-2,16, 10, 1]
+guess6 = [2.5, 100, 2e-1,5, 150, 2e-1,8, 170, 2e-1,10 ,200, 2e-1,13, 150, 2e-1,15, 100, 2e-1,18, 100, 2e-1,20, 60, 2e-1]
+guess7 = [2.5, 100, 2e-1,5, 150, 2e-1,8, 170, 2e-1,10 ,200, 2e-1,13, 150, 2e-1,15, 100, 2e-1,18, 100, 2e-1,20, 60, 2e-1]
+
+
 
 
 popt1, pcov1 = curve_fit(func, x1, y1, p0=guess1)
+
 popt2, pcov2 = curve_fit(func, x2, y2, p0=guess2)
 popt3, pcov3 = curve_fit(func, x3, y3, p0=guess3)
 popt4, pcov4 = curve_fit(func, x4, y4, p0=guess4)
@@ -74,7 +82,6 @@ popt6, pcov6 = curve_fit(func, x6, y6, p0=guess6)
 popt7, pcov7 = curve_fit(func, x7, y7, p0=guess7)
 
 
-print(popt1)
 fit1 = func(x1, *popt1)
 fit2 = func(x2, *popt2)
 fit3 = func(x3, *popt3)
@@ -83,10 +90,12 @@ fit5 = func(x5, *popt5)
 fit6 = func(x6, *popt6)
 fit7 = func(x7, *popt7)
 
+
 fig, axs = plt.subplots(2, 2)
 axs[0, 0].scatter(x1, y1)
 axs[0, 0].set_title('v1')
 axs[0, 0].plot(x1, fit1, 'tab:orange')
+
 axs[0, 1].scatter(x2, y2)
 axs[0, 1].plot(x2, fit2,'tab:purple')
 axs[0, 1].set_title('v2')
@@ -100,8 +109,134 @@ axs[1, 1].set_title('v4')
 for ax in axs.flat:
     ax.set(xlabel='x-label', ylabel='y-label')
 
-# Hide x labels and tick labels for top plots and y ticks for right plots.
+
+
+fig, axs = plt.subplots(2, 2)
+axs[0, 0].plot(x5, y5)
+axs[0, 0].set_title('v5')
+axs[0, 0].plot(x5, fit5, 'tab:orange')
+
+axs[0, 1].plot(x6, y6)
+axs[0, 1].plot(x6, fit6,'tab:purple')
+axs[0, 1].set_title('v6')
+axs[1, 0].plot(x7, y7)
+axs[1, 0].plot(x7, fit7, 'tab:green')
+axs[1, 0].set_title('v7')
+
 for ax in axs.flat:
-    ax.label_outer()
+    ax.set(xlabel='x-label', ylabel='y-label')
+
+
+
+
+plt.show()
+
+
+#FIT RETTA GUADAGNO
+
+
+x=np.array([1,2,3,4,5,6,7])
+
+peaks=np.zeros((7,7))
+
+
+popt=[]
+popt=np.stack((popt1,popt2,popt3,popt4,popt5,popt6,popt7))
+
+
+def func1(x,m,c):
+    y=m*x+c
+    return y
+
+
+
+for j in range(7):
+    for i in range(len(popt3)):
+
+        a=i*3
+        if a<18:
+        
+            peaks[j,i]=popt[j,a]/5000e9
+            peaks[j,i]=peaks[j,i]/1e-19
+
+Dy=np.zeros((7,7))
+
+
+for j in range(7):
+    for i in range(len(popt3)):
+
+        a=(i*3)+2
+        if a<23:
+        
+            Dy[j,i]=np.abs(popt[j,a])/5000e9
+            Dy[j,i]=Dy[j,i]/1e-19
+            
+
+
+peaks=np.ma.masked_less(peaks, 1)
+Dy=np.ma.masked_less(Dy, 0)
+
+
+np.savetxt('peaks.txt',peaks)
+np.savetxt('Dy.txt',Dy)
+
+
+par1, cov1 = curve_fit(func1, x, peaks[0,:], p0=(6e6,-6e5),sigma=Dy[0,:])
+par2, cov2 = curve_fit(func1, x, peaks[1,:], p0=(1e6,-1e5),sigma=Dy[1,:])
+par3, cov3 = curve_fit(func1, x, peaks[2,:], p0=(1.7e6,-1e5),sigma=Dy[2,:])
+par4, cov4 = curve_fit(func1, x, peaks[3,:], p0=(2e6,1e5),sigma=Dy[3,:])
+par5, cov5 = curve_fit(func1, x, peaks[4,:], p0=(3e6,-1e5),sigma=Dy[4,:])
+par6, cov6 = curve_fit(func1, x, peaks[5,:], p0=(3e6,-5e5),sigma=Dy[5,:])
+par7, cov7 = curve_fit(func1, x, peaks[6,:], p0=(3e6,-1e5),sigma=Dy[6,:])
+
+print(par1)
+fig, axs = plt.subplots(2, 2)
+axs[0, 0].errorbar(x, peaks[0,:],Dy[0,:])
+axs[0, 0].set_title('v1')
+axs[0, 0].plot(x, func1(x,*par1), 'tab:orange')
+
+axs[0, 1].errorbar(x, peaks[1,:],Dy[1,:])
+axs[0, 1].plot(x, func1(x,*par2),'tab:purple')
+axs[0, 1].set_title('v2')
+axs[1, 0].errorbar(x, peaks[2,:],Dy[2,:])
+axs[1, 0].plot(x, func1(x,*par3), 'tab:green')
+axs[1, 0].set_title('v3')
+axs[1, 1].errorbar(x, peaks[3,:],Dy[3,:])
+axs[1, 1].plot(x, func1(x,*par4), 'tab:red')
+axs[1, 1].set_title('v4')
+
+fig, axs = plt.subplots(2, 2)
+axs[0, 0].errorbar(x, peaks[4,:],Dy[4,:])
+axs[0, 0].set_title('v5')
+axs[0, 0].plot(x, func1(x,*par5), 'tab:orange')
+
+axs[0, 1].errorbar(x, peaks[5,:],Dy[5,:])
+axs[0, 1].plot(x, func1(x,*par6),'tab:purple')
+axs[0, 1].set_title('v6')
+axs[1, 0].errorbar(x, peaks[6,:],Dy[6,:])
+axs[1, 0].plot(x, func1(x,*par7), 'tab:green')
+axs[1, 0].set_title('v7')
+
+
+plt.show()
+
+
+#FIT GUADAGNO OVERVOLTAGE
+
+V=np.array([55,55.5,56,56.5,57,57.5,58])
+par=[]
+par=np.stack((par1,par2,par3,par4,par5,par6,par7))
+gain=np.zeros(7)
+
+for j in range(7):
+        gain[j]=par[j,0]
+            
+
+parametri, covarianza = curve_fit(func1, V, gain, p0=(100000,0))
+
+
+plt.scatter(V, gain)
+plt.plot(V,func1(V,*parametri))
+
 
 plt.show()
