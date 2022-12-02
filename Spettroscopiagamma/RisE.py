@@ -5,6 +5,7 @@ from scipy.signal import find_peaks
 from scipy.optimize import curve_fit
 from scipy import sparse
 from scipy.sparse.linalg import spsolve
+import math
 
 Path.cwd()
 
@@ -40,7 +41,7 @@ y=[662,31,81,356,60,1174,1332,511,1274]
 
 
 
-#ALGORITMO PER ELIMINARE IL CONTINUM
+#ALGORITMO SCEMO PER ELIMINARE IL CONTINUM
 
 c=x[590:710]
 a=[]
@@ -53,10 +54,9 @@ Mi=np.sum(a)/len(a)
 Mf=np.sum(b)/len(b)
 F=((Mi+Mf)*440)/2
 
-Na22net=np.sum(Na22cal[c])-F
+Na22net_=np.sum(Na22cal[c])-F
 Na22gross=np.sum(Na22cal[c])
-print(Na22net)
-print(Na22gross)
+
 
 
 
@@ -75,22 +75,64 @@ def baseline_als(y, lam, p, niter=10):
     w = p * (y > z) + (1-p) * (y < z)
   return z
 
+#CALCOLO BASELINE
 Na22base=baseline_als(Na22cal, 1e5, 0.001)
-print(Na22base)
 Co60base=baseline_als(Co60cal, 1e5, 0.001)
 Ba133base=baseline_als(Ba133cal, 1e5, 0.001)
 Am241base=baseline_als(Am241cal, 1e5, 0.001)
 Cs137base=baseline_als(Cs137cal, 1e5, 0.001)
 
-
+#CALCOLO NET AREA
 Na22net1=np.sum(Na22cal[c]-Na22base[c])
-print(Na22net1)
-'''
-Co60net2=np.sum(Co60cal[c]-Co60base[c])
-Ba133net3=np.sum(Ba133cal[c]-Ba133base[c])
-Cs137net4=np.sum(Cs137cal[c]-Cs137base[c])
-Am241net5=np.sum(Am241cal[c]-Am241base[c])
-'''
+Na22net2=np.sum(Na22cal[1475:1655]-Na22base[1475:1655])
+
+Co60net1=np.sum(Co60cal[1355:1550]-Co60base[1355:1550])
+Co60net2=np.sum(Co60cal[1550:1755]-Co60base[1550:1755])
+
+Ba133net1=np.sum(Ba133cal[25:65]-Ba133base[25:65])
+Ba133net2=np.sum(Ba133cal[95:135]-Ba133base[95:135])
+Ba133net3=np.sum(Ba133cal[427:515]-Ba133base[427:515])
+
+Cs137net=np.sum(Cs137cal[750:910]-Cs137base[750:910])
+Am241net=np.sum(Am241cal[60:105]-Am241base[60:105])
+
+#TROVO FWHM
+
+def FWHM(X,Y):
+    half_max = max(Y) / 2.
+    #find when function crosses line half_max (when sign of diff flips)
+    #take the 'derivative' of signum(half_max - Y[])
+    d = np.sign(half_max - np.array(Y[0:-1])) - np.sign(half_max - np.array(Y[1:]))
+    #plot(X[0:len(d)],d) #if you are interested
+    #find the left and right most indexes
+    left_idx = np.where(d > 0)[0]
+    right_idx = np.where(d < 0)[-1]
+    return X[right_idx] - X[left_idx] #return the difference (full width)
+
+
+Na22FWHM1=FWHM(x,Na22cal[c]-Na22base[c])
+Na22FWHM2=FWHM(x,Na22cal[1475:1655]-Na22base[1475:1655])
+Co60FWHM1=FWHM(x,Co60cal[1355:1550]-Co60base[1355:1550])
+Co60FWHM2=FWHM(x,Co60cal[1550:1755]-Co60base[1550:1755])
+
+Ba133FWHM1=FWHM(x,Ba133cal[25:65]-Ba133base[25:65])
+Ba133FWHM2=FWHM(x,Ba133cal[95:135]-Ba133base[95:135])
+Ba133FWHM3=FWHM(x,Ba133cal[427:515]-Ba133base[427:515])
+
+Cs137FWHM=FWHM(x,Cs137cal[750:910]-Cs137base[750:910])
+Am241FWHM=FWHM(x,Am241cal[60:105]-Am241base[60:105])
+print(Na22FWHM1)
+print('RisENa1:',(Na22FWHM1/(Na22cal[ppNa1]-Na22base[ppNa1]))*100)
+print('RisENa2:',(Na22FWHM2[3]/(Na22cal[ppNa2]-Na22base[ppNa2]))*100)
+print('RisECo1:',(Co60FWHM1[1]/(Co60cal[ppCo1]-Co60base[ppCo1]))*100)
+print('RisECo2:',(Co60FWHM2/(Co60cal[ppCo2]-Co60base[ppCo2]))*100)
+
+print('RisECs:',(Cs137FWHM/(Cs137cal[ppCs]-Cs137base[ppCs]))*100)
+print('RisEAm:',(Am241FWHM/(Am241cal[ppAm]-Am241base[ppAm]))*100)
+
+
+
+
 #PLOTTO
 
 
