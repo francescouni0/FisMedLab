@@ -8,7 +8,7 @@ peakfit = fit(channel, data, 'gauss1', 'Exclude', channel < 50);
 mean = peakfit.b1;
 sigma = peakfit.c1;
 
-plot(peakfit,channel,data)
-xlim([0 500])
+%plot(peakfit,channel,data)
+%xlim([0 500])
 
 end

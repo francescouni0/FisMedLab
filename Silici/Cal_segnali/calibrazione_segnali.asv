@@ -44,7 +44,6 @@ channel = reshape(mean, 6, 1);
 weight = 1./sqrt(sigma);
 
 figure
-subplot(2, 1, 1)
 calibr1 = fit(signal, channel, 'poly1', 'Weights', weight);
 h1 = plot(calibr1, signal, channel)
 hold on
@@ -53,11 +52,11 @@ hold off
 legend( h1, 'Signal amplitude', 'Fit', 'Location', 'NorthWest');
 
 title('Chn vs. KeV');
-xlabel( 'Voltage[mV]');
+xlabel( 'KeV');
 ylabel( 'Channel');
 grid on
 
-subplot(2, 1, 2)
+figure
 calibr2 = fit(energy, channel, 'poly1', 'Weights', weight);
 h2 = plot(calibr2, energy, channel)
 hold on
@@ -65,6 +64,7 @@ errorbar(energy, mean, sigma, "LineStyle", "none", "Color", "black");
 hold off
 legend( h2, 'Simulated energy', 'Fit', 'Location', 'NorthWest');
 
+title('Chn vs. KeV');
 xlabel( 'Energy[eV]');
 ylabel( 'Channel');
 grid on
