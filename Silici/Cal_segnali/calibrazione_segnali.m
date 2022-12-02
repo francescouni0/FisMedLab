@@ -45,7 +45,7 @@ weight = 1./sqrt(sigma);
 
 figure
 subplot(2, 1, 1)
-calibr1 = fit(signal, channel, 'poly1', 'Weights', weight);
+calibr1 = fit(signal, channel, 'poly1', 'Weights', weight)
 h1 = plot(calibr1, signal, channel)
 hold on
 errorbar(signal, mean, sigma, "LineStyle", "none", "Color", "black");
@@ -68,3 +68,10 @@ legend( h2, 'Simulated energy', 'Fit', 'Location', 'NorthWest');
 xlabel( 'Energy[eV]');
 ylabel( 'Channel');
 grid on
+
+%% Risoluzione energetica
+FWHM = reshape(sqrt(8*log(2)).*sigma, 6, 1)
+R = FWHM./channel
+
+figure
+scatter(signal, R)
