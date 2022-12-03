@@ -52,7 +52,7 @@ errorbar(signal, mean, sigma, "LineStyle", "none", "Color", "black");
 hold off
 legend( h1, 'Signal amplitude', 'Fit', 'Location', 'NorthWest');
 
-title('Chn vs. KeV');
+title('Calibrazione con segnali di test');
 xlabel( 'Voltage[mV]');
 ylabel( 'Channel');
 grid on
@@ -69,9 +69,47 @@ xlabel( 'Energy[eV]');
 ylabel( 'Channel');
 grid on
 
-%% Risoluzione energetica
+%% Risoluzione energetica e rumore
 FWHM = reshape(sqrt(8*log(2)).*sigma, 6, 1)
 R = FWHM./channel
 
 figure
-scatter(signal, R)
+subplot(2,1,1)
+plot(channel, R)
+title('Channel')
+xlabel( 'Channel[a.u.]');
+ylabel( 'dH/H');
+subplot(2,1,2)
+plot(channel, FWHM)
+xlabel( 'Channel[a.u.]');
+ylabel( 'FWHM');
+
+FWHM1 = FWHM./calibr1.p1
+R1 = FWHM1./signal
+
+figure
+subplot(2,1,1)
+plot(signal, R1)
+title('Signal amplitude')
+xlabel( 'Voltage[mV]');
+ylabel( 'dV/V');
+subplot(2,1,2)
+plot(signal, FWHM1)
+xlabel( 'Voltage[mV]');
+ylabel( 'FWHM');
+
+FWHM2 = FWHM./calibr2.p1
+R2 = FWHM2./energy
+
+figure
+subplot(2,1,1)
+plot(energy, R2)
+title('Simulated energy')
+xlabel( 'Energy[eV]');
+ylabel( 'dE/E');
+subplot(2,1,2)
+plot(energy, FWHM2)
+xlabel( 'Energy[eV]');
+ylabel( 'FWHM');
+
+

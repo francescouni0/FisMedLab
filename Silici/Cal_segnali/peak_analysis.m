@@ -1,7 +1,7 @@
 function [mean, sigma] = peak_analysis(file_name)
 
 data = table2array(importfile_spe(file_name));
-channel = transpose(linspace(0, length(data), length(data)));
+channel = transpose(linspace(1, length(data), length(data)));
 
 peakfit = fit(channel, data, 'gauss1', 'Exclude', channel < 50);
 
