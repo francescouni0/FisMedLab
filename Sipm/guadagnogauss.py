@@ -5,7 +5,7 @@ from scipy.optimize import leastsq, curve_fit
 from pathlib import Path
 from scipy.integrate import simpson
 from numpy import trapz
-
+from math import isclose
 
 Path.cwd()
 
@@ -62,8 +62,8 @@ print(x3.shape)
 
 
 guess1 = [0, 60, 2e-2,2, 60, 2e-2,3, 160, 2e-2,4 ,80, 2e-2,6, 60, 2e-2,7, 60, 2e-2,7.5, 60, 2e-2,8, 60, 2e-1]
-guess2 = [1.4, 60, 2e-2,2.9, 60, 2e-2,4.4, 60, 2e-2,6 ,60, 2e-2,7.5, 60, 2e-2,8.8, 60, 2e-2,10.2, 60, 2e-2,12, 60, 2e-1]
-guess3 = [1.5, 60, 2e-2,3.2, 60, 2e-2,5, 60, 2e-2,6.8 ,60, 2e-2,8.5,60,2e-2,10.1,60,2e-2,11, 60, 2e-2,13, 60, 2e-1]
+guess2 = [1.4, 60, 2e-2,2.9, 60, 2e-2,4.4, 60, 2e-2,6 ,60, 2e-2,7.5, 60, 2e-2,8.8, 60, 2e-2,10.2, 60, 2e-2,10.5, 10, 1]
+guess3 = [1.5, 60, 2e-2,3.2, 60, 2e-2,5, 60, 2e-2,6.8 ,60, 2e-2,8.5,60,2e-2,10.1,60,2e-2,11, 60, 2e-2,14, 60, 2e-1]
 guess4 = [1.3, 60, 2e-2,3.5, 60, 2e-2,5.4, 60, 2e-2,7.64 ,60, 2e-2,9.4, 60, 2e-2,11.5,60,2e-2,13.5, 60, 2e-2,15,60,2e-2]
 guess5 = [1, 60, 2e-2,4, 60, 2e-2,6, 60, 2e-2,8 ,60, 2e-2,11, 60, 2e-2,13, 60, 2e-2,15, 60, 2e-2,16, 10, 1]
 guess6 = [2.5, 100, 2e-1,5, 150, 2e-1,8, 170, 2e-1,10 ,200, 2e-1,13, 150, 2e-1,15, 100, 2e-1,18, 100, 2e-1,20, 60, 2e-1]
@@ -248,8 +248,19 @@ parametri, covarianza = curve_fit(func1, V, gain, p0=(100000,0),sigma=sig)
 print('guadagno=',parametri)
 print(np.sqrt(covarianza[0,0]))
 
+
+
 plt.errorbar(V, gain,yerr=np.sqrt(covarianza[0,0]),fmt="o")
 plt.plot(V,func1(V,*parametri))
+
+
+plt.show()
+
+f=np.linspace(52,60)
+
+plt.plot(f,func1(f, *parametri))
+
+print('Ov=',-parametri[1]/parametri[0])
 
 
 plt.show()
