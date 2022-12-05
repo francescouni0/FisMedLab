@@ -157,7 +157,7 @@ for j in range(7):
         if a<18:
         
             peaks[j,i]=popt[j,a]/5000e9
-            peaks[j,i]=peaks[j,i]/1e-19
+            peaks[j,i]=peaks[j,i]/1.602176634e-19
 
 Dy=np.zeros((7,7))
 
@@ -169,7 +169,7 @@ for j in range(7):
         if a<23:
         
             Dy[j,i]=np.abs(popt[j,a])/5000e9
-            Dy[j,i]=Dy[j,i]/1e-19
+            Dy[j,i]=Dy[j,i]/1.602176634e-19
             
 
 
@@ -255,12 +255,14 @@ plt.plot(V,func1(V,*parametri))
 
 
 plt.show()
-
+print('Ov=',-parametri[1]/parametri[0])
+'''
 f=np.linspace(52,60)
 
 plt.plot(f,func1(f, *parametri))
 
-print('Ov=',-parametri[1]/parametri[0])
+
 
 
 plt.show()
+'''
