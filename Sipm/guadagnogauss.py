@@ -266,3 +266,19 @@ plt.plot(f,func1(f, *parametri))
 
 plt.show()
 '''
+
+
+
+#STIMA CAPACITÀ MICROCELLA
+
+
+V_OV=np.array(V+(parametri[1]/parametri[0]))
+print(V_OV)
+C=[]
+for l in range(7):
+    C=np.append(C,(par[0+2*l:14]*1.602176634e-19)/V_OV[l])
+
+
+Ccel=np.mean(C)
+
+print(Ccel)
