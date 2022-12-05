@@ -121,15 +121,35 @@ Ba133FWHM3=FWHM(x,Ba133cal[427:515]-Ba133base[427:515])
 
 Cs137FWHM=FWHM(x,Cs137cal[750:910]-Cs137base[750:910])
 Am241FWHM=FWHM(x,Am241cal[60:105]-Am241base[60:105])
-print(Na22FWHM1)
-print('RisENa1:',(Na22FWHM1/(Na22cal[ppNa1]-Na22base[ppNa1]))*100)
-print('RisENa2:',(Na22FWHM2[3]/(Na22cal[ppNa2]-Na22base[ppNa2]))*100)
-print('RisECo1:',(Co60FWHM1[1]/(Co60cal[ppCo1]-Co60base[ppCo1]))*100)
-print('RisECo2:',(Co60FWHM2/(Co60cal[ppCo2]-Co60base[ppCo2]))*100)
 
-print('RisECs:',(Cs137FWHM/(Cs137cal[ppCs]-Cs137base[ppCs]))*100)
-print('RisEAm:',(Am241FWHM/(Am241cal[ppAm]-Am241base[ppAm]))*100)
+#RISOLUZIONE ENERGETICA INGENUA
 
+
+print(np.mean(Na22cal[c]-Na22base[c]))
+print(np.mean(Na22cal[1475:1655]-Na22base[1475:1655]))
+print(np.mean(Co60cal[1355:1550]-Co60base[1355:1550]))
+print(np.mean(Co60cal[1550:1755]-Co60base[1550:1755]))
+print(np.mean(Cs137cal[750:910]-Cs137base[750:910]))
+print(np.mean(Am241cal[60:105]-Am241base[60:105]))
+
+
+'''
+print('RisENa1:',(Na22FWHM1/np.mean(Na22cal[c]-Na22base[c]))*100)
+
+print('RisENa2:',(Na22FWHM2[3]/np.mean(Na22cal[1475:1655]-Na22base[1475:1655]))*100)
+
+
+print('RisECo1:',(Co60FWHM1[1]/np.mean(Co60cal[1355:1550]-Co60base[1355:1550]))*100)
+print('RisECo2:',(Co60FWHM2/np.mean(Co60cal[1550:1755]-Co60base[1550:1755]))*100)
+
+print('RisECs:',(Cs137FWHM/np.mean(Cs137cal[750:910]-Cs137base[750:910]))*100)
+print('RisEAm:',(Am241FWHM/np.mean(Am241cal[60:105]-Am241base[60:105]))*100)
+'''
+#PROVIAMO MEGLIO
+
+
+print(Na22FWHM1/np.mean(Na22cal[c]-Na22base[c])*100)
+print()
 
 
 
