@@ -47,11 +47,11 @@ ppCo1=pCo[5]
 ppCo2=pCo[6]
 ppNa1=pNa[1]
 ppNa2=pNa[2]
-print('Cs:',pCs)
-print('Ba:' ,pBa)
-print('Na:' ,pNa)
-print('Co:' ,pCo)
-print('Am:' ,pAm)
+print('Cs:',ppCs)
+print('Ba:' ,ppBa1,ppBa2,ppBa3)
+print('Na:' ,ppNa1,ppNa2)
+print('Co:' ,ppCo1,ppCo2)
+print('Am:' ,ppAm)
 
 #FITTO RETTA CALIBRAZIONE
 
@@ -67,7 +67,7 @@ y=[662,31,81,356,60,1174,1332,511,1274]
 
 popt, cov =curve_fit(func, pp, y)
 
-
+print(popt)
 plt.plot(pp,func(pp,popt[0],popt[1]))
 
 

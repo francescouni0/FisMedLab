@@ -21,21 +21,19 @@ back=np.loadtxt('fondo.Spe')
 x=np.linspace(0,2048,2048,dtype=int)
 
 
-#TROVO PICCHI
-pCs, _ =find_peaks(Cs137cal,prominence=0.00004)
-pAm, _ =find_peaks(Am241cal,prominence=0.00004)
-pNa, _ =find_peaks(Na22cal,prominence=0.00004)
-pCo, _ =find_peaks(Co60cal,prominence=0.00004)
-pBa, _ =find_peaks(Ba133cal,prominence=0.00004)
-ppCs=pCs[7]
-ppBa1=pBa[1]
-ppBa2=pBa[2]
-ppBa3=pBa[3]
-ppAm=pAm[3]
-ppCo1=pCo[5]
-ppCo2=pCo[6]
-ppNa1=pNa[1]
-ppNa2=pNa[2]
+# PICCHI
+
+ppCs=840
+ppBa1=47
+ppBa2=118
+ppBa3=468
+ppAm=90
+ppCo1=1458
+ppCo2=1650
+ppNa1=661
+ppNa2=1570
+
+pp=np.array([ppCs,ppBa1,ppBa2,ppBa3,ppAm,ppCo1,ppCo2,ppNa1,ppNa2])
 y=[662,31,81,356,60,1174,1332,511,1274]
 
 
@@ -122,41 +120,36 @@ Ba133FWHM3=FWHM(x,Ba133cal[427:515]-Ba133base[427:515])
 Cs137FWHM=FWHM(x,Cs137cal[750:910]-Cs137base[750:910])
 Am241FWHM=FWHM(x,Am241cal[60:105]-Am241base[60:105])
 
+
+
 #RISOLUZIONE ENERGETICA INGENUA
+RisE=np.array([(Cs137FWHM/ppCs)*100,(Ba133FWHM1/ppBa1)*100,(Ba133FWHM2/ppBa2)*100,(Ba133FWHM3/ppBa3)*100,(Am241FWHM/ppAm)*100,(Co60FWHM1[1]/ppCo1)*100,(Co60FWHM2/ppCo2),(Na22FWHM1/ppNa1)*100,(Na22FWHM2[3]/ppNa2)*100])
+
+print('RisENa1:',(Na22FWHM1/ppNa1)*100)
+
+print('RisENa2:',(Na22FWHM2[3]/ppNa2)*100)
+print('RisECo1:',(Co60FWHM1[1]/ppCo1)*100)
+print('RisECo2:',(Co60FWHM2/ppCo2)*100)
+
+print('RisECs:',(Cs137FWHM/ppCs)*100)
+print('RisEAm:',(Am241FWHM/ppAm)*100)
 
 
-print(np.mean(Na22cal[c]-Na22base[c]))
-print(np.mean(Na22cal[1475:1655]-Na22base[1475:1655]))
-print(np.mean(Co60cal[1355:1550]-Co60base[1355:1550]))
-print(np.mean(Co60cal[1550:1755]-Co60base[1550:1755]))
-print(np.mean(Cs137cal[750:910]-Cs137base[750:910]))
-print(np.mean(Am241cal[60:105]-Am241base[60:105]))
+#PROVIAMO MEGLIO TENENDO CONTRO DEGLI ELETTRONI GENERATI DAI FOTOTUBI
 
-
-'''
-print('RisENa1:',(Na22FWHM1/np.mean(Na22cal[c]-Na22base[c]))*100)
-
-print('RisENa2:',(Na22FWHM2[3]/np.mean(Na22cal[1475:1655]-Na22base[1475:1655]))*100)
-
-
-print('RisECo1:',(Co60FWHM1[1]/np.mean(Co60cal[1355:1550]-Co60base[1355:1550]))*100)
-print('RisECo2:',(Co60FWHM2/np.mean(Co60cal[1550:1755]-Co60base[1550:1755]))*100)
-
-print('RisECs:',(Cs137FWHM/np.mean(Cs137cal[750:910]-Cs137base[750:910]))*100)
-print('RisEAm:',(Am241FWHM/np.mean(Am241cal[60:105]-Am241base[60:105]))*100)
-'''
-#PROVIAMO MEGLIO
-
-
-print(Na22FWHM1/np.mean(Na22cal[c]-Na22base[c])*100)
-print()
-
+FNa1=(Na22FWHM1)/np.sqrt(np.sum(Na22cal[c]-Na22base[c]))
+FNa2=(Na22FWHM2[3])/np.sqrt(np.sum(Na22cal[1475:1655]-Na22base[1475:1655]))
+FCo1=(Co60FWHM1[1])/np.sqrt(np.sum(Co60cal[1355:1550]-Co60base[1355:1550]))
+FCo2=(Co60FWHM2)/np.sqrt(np.sum(Co60cal[1550:1755]-Co60base[1550:1755]))
+FCs=(Cs137FWHM)/np.sqrt(np.sum(Cs137cal[750:910]-Cs137base[750:910]))
+FAm=(Am241FWHM)/np.sqrt(np.sum(Am241cal[60:105]-Am241base[60:105]))
 
 
 #PLOTTO
+xen=(x*0.81718445)-17.68967536
+plt.scatter(xen[pp],RisE)
 
-
-
+plt.show()
 fig, axs = plt.subplots(2, 2)
 axs[0, 0].set_title('Cs137')
 axs[0,0].plot(x,Cs137cal)
