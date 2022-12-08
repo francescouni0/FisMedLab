@@ -109,16 +109,27 @@ def FWHM(X,Y):
 
 
 Na22FWHM1=FWHM(x,Na22cal[c]-Na22base[c])
+print(f'I sigma Na22: {Na22FWHM1/2.335}')
 Na22FWHM2=FWHM(x,Na22cal[1475:1655]-Na22base[1475:1655])
+print(f'II sigma Na22: {Na22FWHM2[3]/2.335}')
+
 Co60FWHM1=FWHM(x,Co60cal[1355:1550]-Co60base[1355:1550])
+print(f'I sigma Co60: {Co60FWHM1[1]/2.335}')
 Co60FWHM2=FWHM(x,Co60cal[1550:1755]-Co60base[1550:1755])
+print(f'II sigma Co60: {Co60FWHM2/2.335}')
 
 Ba133FWHM1=FWHM(x,Ba133cal[25:65]-Ba133base[25:65])
+print(f'I sigma Ba133: {Ba133FWHM1/2.335}')
 Ba133FWHM2=FWHM(x,Ba133cal[95:135]-Ba133base[95:135])
+print(f'II sigma Ba133: {Ba133FWHM2/2.335}')
 Ba133FWHM3=FWHM(x,Ba133cal[427:515]-Ba133base[427:515])
+print(f'III sigma Ba133: {Ba133FWHM3/2.335}')
 
 Cs137FWHM=FWHM(x,Cs137cal[750:910]-Cs137base[750:910])
+print(f'sigma Cs137: {Cs137FWHM/2.335}')
+
 Am241FWHM=FWHM(x,Am241cal[60:105]-Am241base[60:105])
+print(f'sigma Am241: {Am241FWHM/2.335}')
 
 
 
