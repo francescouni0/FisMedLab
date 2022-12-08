@@ -15,7 +15,7 @@ Na22cal = np.loadtxt('Na22cal.Spe')
 back=np.loadtxt('fondo.Spe')
 
 
-x=np.linspace(0,2048,2048)
+x=np.linspace(1,2048,2048)
 
 #NORMALIZZO TUTTO
 Cs137cal_norm= Cs137cal / (np.max(Cs137cal)*770)
@@ -37,7 +37,7 @@ pAm, _ =find_peaks(Am241clean,prominence=0.00004)
 pNa, _ =find_peaks(Na22clean,prominence=0.00004)
 pCo, _ =find_peaks(Co60clean,prominence=0.00004)
 pBa, _ =find_peaks(Ba133clean,prominence=0.00004)
-#SELEZIONO FOTOPICCHI (indici dello stesso elemento hanno energia consegcutiva)
+#SELEZIONO FOTOPICCHI (indici dello stesso elemento hanno energia consecutiva)
 ppCs=pCs[7]
 ppBa1=pBa[1]
 ppBa2=pBa[2]
@@ -62,17 +62,25 @@ def func(b,m,a):
 pp=np.array([ppCs,ppBa1,ppBa2,ppBa3,ppAm,ppCo1,ppCo2,ppNa1,ppNa2])
 
 
-y=[662,31,81,356,60,1174,1332,511,1274]
+#y=[662,31,81,356,60,1174,1332,511,1274]
+energy=np.array([662,31,81,356,60,1174,1332,511,1274])
+sigma=np.array([24.83940043, 4.71092077, 7.28051392, 18.84368308, 5.56745182, 31.69164882226981, 35.11777302, 21.41327623, 27.40899357601713])
 
 
-popt, cov =curve_fit(func, pp, y)
+#popt, cov =curve_fit(func, pp, y, sigma=sigma)
+popt, cov =curve_fit(func, energy, pp, sigma=sigma) # fit(channel, energy)
 
 print(popt)
-plt.plot(pp,func(pp,popt[0],popt[1]))
+#plt.plot(pp,func(pp,popt[0],popt[1]))
+plt.plot(energy,func(energy,popt[0],popt[1]))
+
+print(f'Channel = {popt[0]} * Energy + {popt[1]}')
+print(f'Energy = {1/popt[0]} * Channel - {popt[1]/popt[0]}')
 
 
 
-plt.scatter(pp,y)
+#plt.scatter(pp,y)
+plt.scatter(energy,pp)
 plt.show()
 
 #PLOTTO
