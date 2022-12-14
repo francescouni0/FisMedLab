@@ -118,6 +118,7 @@ print(f'I sigma Co60: {Co60FWHM1[1]/2.335}')
 Co60FWHM2=FWHM(x,Co60cal[1550:1755]-Co60base[1550:1755])
 print(f'II sigma Co60: {Co60FWHM2/2.335}')
 
+
 Ba133FWHM1=FWHM(x,Ba133cal[25:65]-Ba133base[25:65])
 print(f'I sigma Ba133: {Ba133FWHM1/2.335}')
 Ba133FWHM2=FWHM(x,Ba133cal[95:135]-Ba133base[95:135])
@@ -134,7 +135,7 @@ print(f'sigma Am241: {Am241FWHM/2.335}')
 
 
 #RISOLUZIONE ENERGETICA INGENUA
-RisE=np.array([(Cs137FWHM/ppCs)*100,(Ba133FWHM1/ppBa1)*100,(Ba133FWHM2/ppBa2)*100,(Ba133FWHM3/ppBa3)*100,(Am241FWHM/ppAm)*100,(Co60FWHM1[1]/ppCo1)*100,(Co60FWHM2/ppCo2),(Na22FWHM1/ppNa1)*100,(Na22FWHM2[3]/ppNa2)*100])
+RisE=np.array([(Cs137FWHM/ppCs)*100,(Ba133FWHM1/ppBa1)*100,(Ba133FWHM2/ppBa2)*100,(Ba133FWHM3/ppBa3)*100,(Am241FWHM/ppAm)*100,(Co60FWHM1[1]/ppCo1)*100,(Co60FWHM2/ppCo2)*100,(Na22FWHM1/ppNa1)*100,(Na22FWHM2[3]/ppNa2)*100])
 
 print('RisENa1:',(Na22FWHM1/ppNa1)*100)
 
@@ -159,12 +160,19 @@ FAm=(Am241FWHM)/np.sqrt(np.sum(Am241cal[60:105]-Am241base[60:105]))
 
 
 #PLOTTO
+
+'''
+#PLOT RISOLUZIONE ENERGETICA IN FUNZIONE DELL'ENERGIA
 xen=(x*0.81718445)-17.68967536
 plt.scatter(xen[pp],RisE)
 
 plt.show()
+'''
 fig, axs = plt.subplots(2, 2)
+fig.supxlabel('Energia')
+fig.supylabel('Conteggi')
 axs[0, 0].set_title('Cs137')
+
 axs[0,0].plot(x,Cs137cal)
 axs[0,0].plot(x,Cs137cal-Cs137base,'tab:orange')
 
