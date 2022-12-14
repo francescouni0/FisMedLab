@@ -64,25 +64,24 @@ pp=np.array([ppCs,ppBa1,ppBa2,ppBa3,ppAm,ppCo1,ppCo2,ppNa1,ppNa2])
 
 #y=[662,31,81,356,60,1174,1332,511,1274]
 energy=np.array([662,31,81,356,60,1174,1332,511,1274])
+RisE=np.loadtxt('risE.txt')
 sigma=np.array([24.83940043, 4.71092077, 7.28051392, 18.84368308, 5.56745182, 31.69164882226981, 35.11777302, 21.41327623, 27.40899357601713])
 
 
-#popt, cov =curve_fit(func, pp, y, sigma=sigma)
-popt, cov =curve_fit(func, energy, pp, sigma=sigma) # fit(channel, energy)
+popt, cov =curve_fit(func, energy, pp, sigma=RisE) # fit(channel, energy)
 
 print(popt)
-#plt.plot(pp,func(pp,popt[0],popt[1]))
-plt.plot(energy,func(energy,popt[0],popt[1]))
+plt.ylabel('Canale',fontsize=18)
+plt.xlabel('Energia',fontsize=18)
+plt.errorbar(energy,func(energy,popt[0],popt[1]),yerr=RisE,fmt='o')
+plt.plot(energy,func(energy,popt[0],popt[1]),'tab:red')
 
 print(f'Channel = {popt[0]} * Energy + {popt[1]}')
 print(f'Energy = {1/popt[0]} * Channel - {popt[1]/popt[0]}')
-
-
-
-#plt.scatter(pp,y)
-plt.scatter(energy,pp)
 plt.show()
-
+'''
+A QUESTO PUNTO MANCA FARE UN TEST STATISTICO PER LA CALIBRAZIONE R^2????
+'''
 #PLOTTO
 
 fig, axs = plt.subplots(2, 2)

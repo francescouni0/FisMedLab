@@ -145,6 +145,8 @@ print('RisECo2:',(Co60FWHM2/ppCo2)*100)
 print('RisECs:',(Cs137FWHM/ppCs)*100)
 print('RisEAm:',(Am241FWHM/ppAm)*100)
 
+np.savetxt('risE.txt',RisE)
+
 
 #PROVIAMO MEGLIO TENENDO CONTRO DEGLI ELETTRONI GENERATI DAI FOTOTUBI
 
