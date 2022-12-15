@@ -94,6 +94,10 @@ Ba133net3=np.sum(Ba133cal[427:515]-Ba133base[427:515])
 Cs137net=np.sum(Cs137cal[750:910]-Cs137base[750:910])
 Am241net=np.sum(Am241cal[60:105]-Am241base[60:105])
 
+
+ErrRisE=np.array([np.sqrt(Cs137net),np.sqrt(Ba133net1),np.sqrt(Ba133net2),np.sqrt(Ba133net3),np.sqrt(Am241net),np.sqrt(Co60net1),np.sqrt(Co60net2), np.sqrt(Na22net1),np.sqrt(Na22net2)])
+np.savetxt('ErrisE.txt',ErrRisE)
+
 #TROVO FWHM
 
 def FWHM(X,Y):
@@ -138,7 +142,6 @@ print(f'sigma Am241: {Am241FWHM/2.335}')
 RisE=np.array([(Cs137FWHM/ppCs)*100,(Ba133FWHM1/ppBa1)*100,(Ba133FWHM2/ppBa2)*100,(Ba133FWHM3/ppBa3)*100,(Am241FWHM/ppAm)*100,(Co60FWHM1[1]/ppCo1)*100,(Co60FWHM2/ppCo2)*100,(Na22FWHM1/ppNa1)*100,(Na22FWHM2[3]/ppNa2)*100])
 
 print('RisENa1:',(Na22FWHM1/ppNa1)*100)
-
 print('RisENa2:',(Na22FWHM2[3]/ppNa2)*100)
 print('RisECo1:',(Co60FWHM1[1]/ppCo1)*100)
 print('RisECo2:',(Co60FWHM2/ppCo2)*100)
