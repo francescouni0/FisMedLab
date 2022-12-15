@@ -45,4 +45,4 @@ N_celle = 667
 R_q = (N_celle/params[0])*1e9
 print(f'R_q: {R_q} ohm')
 
-#plt.show()
+plt.show()
