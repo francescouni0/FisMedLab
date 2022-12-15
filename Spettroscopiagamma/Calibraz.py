@@ -70,7 +70,10 @@ sigma=np.array([24.83940043, 4.71092077, 7.28051392, 18.84368308, 5.56745182, 31
 
 popt, cov =curve_fit(func, energy, pp, sigma=RisE) # fit(channel, energy)
 
-print(popt)
+print('Coefficienti m e b=',popt)
+print('Errore su m',np.sqrt(cov[0,0]))
+print('Errore su b',np.sqrt(cov[1,1]))
+
 plt.ylabel('Canale',fontsize=18)
 plt.xlabel('Energia',fontsize=18)
 plt.errorbar(energy,func(energy,popt[0],popt[1]),yerr=RisE,fmt='o')
@@ -79,9 +82,18 @@ plt.plot(energy,func(energy,popt[0],popt[1]),'tab:red')
 print(f'Channel = {popt[0]} * Energy + {popt[1]}')
 print(f'Energy = {1/popt[0]} * Channel - {popt[1]/popt[0]}')
 plt.show()
-'''
-A QUESTO PUNTO MANCA FARE UN TEST STATISTICO PER LA CALIBRAZIONE R^2????
-'''
+
+#FACCIO TEST R^2 PER LA CALIBRAZIONE
+
+residuals = pp- func(energy, *popt)
+ss_res = np.sum(residuals**2)
+ss_tot = np.sum((pp-np.mean(pp))**2)
+r_squared = 1 - (ss_res / ss_tot)
+print('R^2=',r_squared)
+
+
+
+
 #PLOTTO
 
 fig, axs = plt.subplots(2, 2)
