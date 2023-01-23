@@ -111,11 +111,11 @@ def FWHM(X,Y):
     right_idx = np.where(d < 0)[-1]
     return X[right_idx] - X[left_idx] #return the difference (full width)
 
-
 Na22FWHM1=FWHM(x,Na22cal[c]-Na22base[c])
 print(f'I sigma Na22: {Na22FWHM1/2.335}')
-Na22FWHM2=FWHM(x,Na22cal[1475:1655]-Na22base[1475:1655])
+Na22FWHM2=FWHM(x,Na22cal[1500:1670]-Na22base[1500:1670])
 print(f'II sigma Na22: {Na22FWHM2[3]/2.335}')
+
 
 Co60FWHM1=FWHM(x,Co60cal[1355:1550]-Co60base[1355:1550])
 print(f'I sigma Co60: {Co60FWHM1[1]/2.335}')
@@ -139,7 +139,7 @@ print(f'sigma Am241: {Am241FWHM/2.335}')
 
 
 #RISOLUZIONE ENERGETICA INGENUA
-RisE=np.array([(Cs137FWHM/ppCs)*100,(Ba133FWHM1/ppBa1)*100,(Ba133FWHM2/ppBa2)*100,(Ba133FWHM3/ppBa3)*100,(Am241FWHM/ppAm)*100,(Co60FWHM1[1]/ppCo1)*100,(Co60FWHM2/ppCo2)*100,(Na22FWHM1/ppNa1)*100,(Na22FWHM2[3]/ppNa2)*100])
+RisE=np.array([(Ba133FWHM1/ppBa1)*100,(Am241FWHM/ppAm)*100,(Ba133FWHM2/ppBa2)*100,(Ba133FWHM3/ppBa3)*100,(Na22FWHM1/ppNa1)*100,(Cs137FWHM/ppCs)*100,(Co60FWHM1[1]/ppCo1)*100,(Na22FWHM2[3]/ppNa2)*100,(Co60FWHM2/ppCo2)*100])
 
 print('RisENa1:',(Na22FWHM1/ppNa1)*100)
 print('RisENa2:',(Na22FWHM2[3]/ppNa2)*100)
