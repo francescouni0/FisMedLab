@@ -6,6 +6,7 @@ from scipy.optimize import curve_fit
 from scipy import sparse
 from scipy.sparse.linalg import spsolve
 import math
+from scipy.stats import chisquare
 
 energy=np.array([31,60,81,356,511,662,1174,1274,1332])
 
@@ -21,13 +22,14 @@ def func3(x,a,b,c):
     z= (a/x)+b+c*x 
     return z
 
+
+
 RisE=np.loadtxt('risE.txt')
 ErrisE=np.loadtxt('ErrisE.txt')
 yerr=2.35/ErrisE
 popt1, cov1 =curve_fit(func1,energy,RisE,[0,0],sigma=yerr) 
 popt2, cov2 =curve_fit(func2,energy,RisE,[0,0],sigma=yerr) 
 popt3, cov3 =curve_fit(func3,energy,RisE,[0,0,0],sigma=yerr) 
-
 
 
 xx=np.linspace(0,1400)
