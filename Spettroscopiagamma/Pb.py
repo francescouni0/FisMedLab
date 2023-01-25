@@ -64,6 +64,11 @@ Pb6clean=Pb6-Pb6base
 Pb9clean=Pb9-Pb9base
 Pb20clean=(Pb20-Pb20base)*0.445
 
+#CALCOLO RMSE
+MSE=np.square(np.subtract(Pb0,Pb0clean)).mean()
+rsme0=math.sqrt(MSE)
+print("Root Mean Square Error:\n")
+print(rsme0)
 
 #CALCOLO NET AREA
 Pb0net=np.sum(Pb0clean[750:910])
@@ -97,9 +102,10 @@ Pb9FWHM=FWHM(x,Pb9clean[650:1000])
 Pb20FWHM=FWHM(x,Pb20clean[650:1000])
 #print(f'Pb20sigma: {Pb20FWHM}')
 
-F=np.array([np.sqrt(Pb0net),np.sqrt(Pb4net),np.sqrt(Pb6net),np.sqrt(Pb9net),np.sqrt(Pb1net)])
+F=np.array([np.sqrt(Pb0net)+rsme0,np.sqrt(Pb4net)+rsme0,np.sqrt(Pb6net)+rsme0,np.sqrt(Pb9net)+rsme0,np.sqrt(Pb1net)+rsme0])
 
 Sigma=np.absolute(F/Pb0net)
+print(F)
 
 '''
 ig, axs = plt.subplots(2, 2)
