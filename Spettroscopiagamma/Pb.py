@@ -19,6 +19,10 @@ Pb20 = np.loadtxt('Cs137_20cm.Spe')
 
 back=np.loadtxt('fondo.Spe')
 
+def func(b,m,a):
+    z=m*b+a
+    return z
+
 
 def baseline_als(y, lam, p, niter=10):
   L = len(y)
@@ -63,11 +67,13 @@ Pb20clean=(Pb20-Pb20base)*0.445
 
 #CALCOLO NET AREA
 Pb0net=np.sum(Pb0clean[750:910])
-Pb1net=np.sum(Pb1clean[750:910])
-Pb4net=np.sum(Pb4clean[750:910])
-Pb6net=np.sum(Pb6clean[750:910])
-Pb9net=np.sum(Pb9clean[750:910])
-Pb20net=np.sum(Pb20clean[750:910])
+Pb1net=np.sum(Pb1clean[810:910])
+Pb4net=np.sum(Pb4clean[770:910])
+Pb6net=np.sum(Pb6clean[800:910])
+Pb9net=np.sum(Pb9clean[800:910])
+Pb20net=np.sum(Pb20clean[720:910])
+
+Net=np.array([Pb0net, Pb4net,Pb6net,Pb9net,Pb1net])/Pb0net
 
 print(Pb0net)
 print(Pb1net)
@@ -78,20 +84,24 @@ print(Pb20net)
 
 #SIGMA
 
-Pb0FWHM=FWHM(x,Pb0clean[750:910])
-print(f'Pb0sigma: {Pb0FWHM}')
-Pb1FWHM=FWHM(x,Pb1clean[750:910])
-print(f'Pb1sigma: {Pb1FWHM}')
-Pb4FWHM=FWHM(x,Pb4clean[750:910])
-print(f'Pb4sigma: {Pb4FWHM}')
-Pb6FWHM=FWHM(x,Pb6clean[750:910])
-print(f'Pb6sigma: {Pb6FWHM}')
-Pb9FWHM=FWHM(x,Pb9clean[750:910])
-print(f'Pb9sigma: {Pb9FWHM}')
-Pb20FWHM=FWHM(x,Pb20clean[750:910])
-print(f'Pb20sigma: {Pb20FWHM}')
+Pb0FWHM=FWHM(x,Pb0clean[650:1000])
+#print(f'Pb0sigma: {Pb0FWHM}')
+Pb1FWHM=FWHM(x,Pb1clean[650:1000])
+#print(f'Pb1sigma: {Pb1FWHM}')
+Pb4FWHM=FWHM(x,Pb4clean[650:1000])
+#print(f'Pb4sigma: {Pb4FWHM}')
+Pb6FWHM=FWHM(x,Pb6clean[650:1000])
+#print(f'Pb6sigma: {Pb6FWHM}')
+Pb9FWHM=FWHM(x,Pb9clean[650:1000])
+#print(f'Pb9sigma: {Pb9FWHM}')
+Pb20FWHM=FWHM(x,Pb20clean[650:1000])
+#print(f'Pb20sigma: {Pb20FWHM}')
 
+F=np.array([np.sqrt(Pb0net),np.sqrt(Pb4net),np.sqrt(Pb6net),np.sqrt(Pb9net),np.sqrt(Pb1net)])
 
+Sigma=np.absolute(F/Pb0net)
+
+'''
 ig, axs = plt.subplots(2, 2)
 axs[0, 0].set_title('Pb0')
 axs[0,0].plot(x,Pb0clean,'tab:orange')
@@ -118,8 +128,37 @@ plt.show()
 fig= plt.plot(x,Pb20clean)
 plt.title('Pb20')
 plt.show()
+'''
+#FIT RETTA
+
+
+l=np.array([0,4,6,9,10])
+popt, cov =curve_fit(func, l, np.log(Net),sigma=Sigma) # fit(channel, energy)
+
+
+
+print(np.sqrt(cov))
+print(popt)
+
+#TEST R^2
+
+residuals = np.log(Net)- func(l, *popt)
+ss_res = np.sum(residuals**2)
+ss_tot = np.sum((np.log(Net)-np.mean(np.log(Net)))**2)
+r_squared = 1 - (ss_res / ss_tot)
+print('R^2=',r_squared)
 
 
 
 
+plt.errorbar(l, Net,yerr=Sigma, fmt='o')
+plt.title('ciao')
+plt.show()
 
+
+plt.errorbar(l, np.log(Net),yerr=Sigma, fmt='o')
+plt.title('ciao')
+
+plt.plot(l, func(l,popt[0],popt[1]))
+plt.title('ciao')
+plt.show()
