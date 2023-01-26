@@ -161,10 +161,10 @@ plt.errorbar(l, Net,yerr=Sigma, fmt='o')
 plt.title('ciao')
 plt.show()
 
-
+plt.xlabel('Spessori[mm]',fontsize=20)
+plt.ylabel('log(I/I0) %',fontsize=20)
 plt.errorbar(l, np.log(Net),yerr=Sigma, fmt='o')
-plt.title('ciao')
+
 
 plt.plot(l, func(l,popt[0],popt[1]))
-plt.title('ciao')
 plt.show()
