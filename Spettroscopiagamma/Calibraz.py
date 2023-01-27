@@ -68,7 +68,7 @@ RisE=np.loadtxt('risE.txt')
 sigma=np.array([24.83940043, 4.71092077, 7.28051392, 18.84368308, 5.56745182, 31.69164882226981, 35.11777302, 21.41327623, 27.40899357601713])
 
 
-popt, cov =curve_fit(func, energy, pp, sigma=RisE) # fit(channel, energy)
+popt, cov =curve_fit(func, energy, pp, sigma=sigma) # fit(channel, energy)
 
 print('Coefficienti m e b=',popt)
 print('Errore su m',np.sqrt(cov[0,0]))

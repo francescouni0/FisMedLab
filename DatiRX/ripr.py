@@ -17,11 +17,13 @@ def FWHM(X,Y):
     #plot(X[0:len(d)],d) #if you are interested
     #find the left and right most indexes
     left_idx = np.where(d > 0)[0]
+    print(left_idx)
     right_idx = np.where(d < 0)[-1]
+    print(right_idx)
     return X[right_idx] - X[left_idx] #return the difference (full width)
 
 FWHMrip=FWHM(D_aria, counts)
-print('Larghezza distribuzione=',FWHMrip)
+print('Larghezza distribuzione=',FWHMrip[1])
 ErrY=D_aria*0.01+FWHMrip[1]
 print(ErrY)
 

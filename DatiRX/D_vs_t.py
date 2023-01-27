@@ -11,19 +11,21 @@ def fit_func(x, m, b):
 Path.cwd()
 
 Err_perc = 0.028
+Err_stat = 0.4
 
 data = np.loadtxt('D_vs_t.txt', skiprows=8)
 Esp = data[:, 0]
 Dose = data[:, 1]
-sigma_D = Dose*Err_perc
+sigma_D = np.sqrt(((Dose*Err_perc)**2)+(Err_stat**2))
 
-params = optimize.curve_fit(fit_func, Esp, Dose, sigma=sigma_D, full_output=True)[0]
+params, cov = optimize.curve_fit(fit_func, Esp, Dose, sigma=sigma_D)
 print(f'Model: y=m*x+b \nSlope: m={params[0]} \nIntercept: b={params[1]}')
+print(f'Err_m={np.sqrt(cov[0,0])} \nErr_b={np.sqrt(cov[1,1])}')
 
 plt.figure()
 plt.plot(Esp, fit_func(Esp, *params), 'r-', label='Fit')
-plt.errorbar(Esp, Dose, yerr=sigma_D, fmt='none', ecolor='black', barsabove=True, label='Dose')
-plt.title('Dose vs Time')
+plt.errorbar(Esp, Dose, yerr=sigma_D, fmt='o', ms='3', mec='green', ecolor='black', barsabove=False, label='Dose')
+plt.title('Dose vs. Time')
 plt.xlabel('Time[ms]')
 plt.ylabel('Dose[uGy]')
 plt.legend()
@@ -35,6 +37,11 @@ plt.plot(Esp, residuals, 'bo')
 plt.title('Residuals plot')
 plt.xlabel('Time[mA]')
 plt.ylabel('Residual[a.u.]')
+
+ss_res = np.sum(residuals**2)
+ss_tot = np.sum((Dose-np.mean(Dose))**2)
+r_squared = 1 - (ss_res / ss_tot)
+print('R^2=',r_squared)
 
 chi_squared = np.sum((residuals/sigma_D)**2)
 dof = len(Dose)-len(params)

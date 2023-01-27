@@ -21,8 +21,8 @@ xlim([0 1000])
 title('Spectrum without background')
 
 %% Remove continuum
-x1 = 750;
-x2 = 930;
+x1 = 740;
+x2 = 940;
 
 xy_A = [x1 spectrum(x1)];
 xy_B = [x2 spectrum(x2)];
