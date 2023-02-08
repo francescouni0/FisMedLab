@@ -33,7 +33,6 @@ count5 = data5[:, 1]
 data5[:,0] = data5[:, 0]/205
 
 
-
 datatef1 = np.loadtxt('counttef55.txt')
 treshtef1 = datatef1[:, 0]/75
 counttef1 = datatef1[:, 1]
