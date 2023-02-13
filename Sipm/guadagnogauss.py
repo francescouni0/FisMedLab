@@ -249,7 +249,7 @@ parametri, covarianza = curve_fit(func1, V, gain, p0=(100000,0),sigma=sig)
 print('guadagno=',parametri)
 print(np.sqrt(covarianza[0,0]))
 
-
+print('covarianza=',covarianza)
 
 plt.errorbar(V, gain,yerr=np.sqrt(covarianza[0,0]),fmt="o")
 
@@ -280,10 +280,8 @@ plt.show()
 V_OV=np.array(V+(parametri[1]/parametri[0]))
 print(V_OV)
 C=[]
-for l in range(7):
-    C=np.append(C,(par[0+2*l:14]*1.602176634e-19)/V_OV[l])
 
+p,c= curve_fit(func1,V_OV,gain,sigma=sig)
 
-Ccel=np.mean(C)
-
-print(Ccel)
+print(p[0]*1.602e-19)
+print(np.sqrt(c[0,0])*1.602e-19)
