@@ -33,7 +33,6 @@ count5 = data5[:, 1]
 data5[:,0] = data5[:, 0]/205
 
 
-
 datatef1 = np.loadtxt('counttef55.txt')
 treshtef1 = datatef1[:, 0]/75
 counttef1 = datatef1[:, 1]
@@ -126,5 +125,44 @@ print('Pcttef5=',Pcttef5)
 
 
 plt.yscale('log')
-plt.scatter(data1[np.ma.getmask(a1),0],data1[np.ma.getmask(a1),1])
+plt.ylabel('Counts')
+plt.xlabel('Threshold[mV]')
+
+plt.plot(data1[np.ma.getmask(a1),0],data1[np.ma.getmask(a1),1],label='55 V')
+plt.plot(data2[np.ma.getmask(a2),0],data2[np.ma.getmask(a2),1],label='56 V')
+plt.plot(data3[np.ma.getmask(a3),0],data3[np.ma.getmask(a3),1],label='57 V')
+plt.plot(data4[np.ma.getmask(a4),0],data4[np.ma.getmask(a4),1],label='58 V')
+plt.plot(data5[np.ma.getmask(a5),0],data5[np.ma.getmask(a5),1],label='59 V')
+plt.legend(loc="upper right")
+
+
+plt.scatter(data1[np.ma.getmask(a1),0],data1[np.ma.getmask(a1),1],label='55 V')
+plt.scatter(data2[np.ma.getmask(a2),0],data2[np.ma.getmask(a2),1],label='56 V')
+plt.scatter(data3[np.ma.getmask(a3),0],data3[np.ma.getmask(a3),1],label='57 V')
+plt.scatter(data4[np.ma.getmask(a4),0],data4[np.ma.getmask(a4),1],label='58 V')
+plt.scatter(data5[np.ma.getmask(a5),0],data5[np.ma.getmask(a5),1],label='59 V')
+
+plt.show()
+
+
+plt.yscale('log')
+plt.ylabel('Counts')
+plt.xlabel('Threshold[mV]')
+
+
+plt.plot(datatef1[np.ma.getmask(alfa1),0],datatef1[np.ma.getmask(alfa1),1],label='55 V')
+plt.plot(datatef2[np.ma.getmask(alfa2),0],datatef2[np.ma.getmask(alfa2),1],label='56 V')
+plt.plot(datatef3[np.ma.getmask(alfa3),0],datatef3[np.ma.getmask(alfa3),1],label='57 V')
+plt.plot(datatef4[np.ma.getmask(alfa4),0],datatef4[np.ma.getmask(alfa4),1],label='58 V')
+plt.plot(datatef5[np.ma.getmask(alfa5),0],datatef5[np.ma.getmask(alfa5),1],label='59 V')
+plt.legend(loc="upper right")
+
+
+plt.scatter(datatef1[np.ma.getmask(alfa1),0],datatef1[np.ma.getmask(alfa1),1],label='55 V')
+plt.scatter(datatef2[np.ma.getmask(alfa2),0],datatef2[np.ma.getmask(alfa2),1],label='56 V')
+plt.scatter(datatef3[np.ma.getmask(alfa3),0],datatef3[np.ma.getmask(alfa3),1],label='57 V')
+plt.scatter(datatef4[np.ma.getmask(alfa4),0],datatef4[np.ma.getmask(alfa4),1],label='58 V')
+plt.scatter(datatef5[np.ma.getmask(alfa5),0],datatef5[np.ma.getmask(alfa5),1],label='59 V')
+
+
 plt.show()

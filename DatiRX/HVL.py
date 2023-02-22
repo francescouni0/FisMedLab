@@ -52,6 +52,7 @@ for i in range(Dosi.shape[0]):
     params, params_cov = optimize.curve_fit(func, Spessore, Dosi[i,:], sigma=Dy[i,:])
     print('Dose di partenza=',Dosi[i,0])
     print('mu,offset=',params)
+    print('errmu=',np.sqrt(params_cov[0,0]))
     plt.plot(x, func(x, *params))
     plt.scatter(Spessore,Dosi[i,:])
     plt.errorbar(Spessore, Dosi[i,:],yerr=Dy[i,:],fmt="o")
@@ -61,7 +62,12 @@ for i in range(Dosi.shape[0]):
             HVL[i,:]=value
 
     hvl=HVL[i,:].mean()
+    mueq=(0.693/hvl)/2.7
     print('HVL=',hvl)
+    print('errHVL=',np.mean([Dy[i,2],Dy[i,3]]))
+    print('mueq=',mueq)
+    
+
     
     
 

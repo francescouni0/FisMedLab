@@ -93,38 +93,38 @@ fit7 = func(x7, *popt7)
 
 fig, axs = plt.subplots(2, 2)
 axs[0, 0].scatter(x1, y1)
-axs[0, 0].set_title('v1')
+axs[0, 0].set_title('55V')
 axs[0, 0].plot(x1, fit1, 'tab:orange')
 
 axs[0, 1].scatter(x2, y2)
 axs[0, 1].plot(x2, fit2,'tab:purple')
-axs[0, 1].set_title('v2')
+axs[0, 1].set_title('55.5V')
 axs[1, 0].scatter(x3, y3)
 axs[1, 0].plot(x3, fit3, 'tab:green')
-axs[1, 0].set_title('v3')
+axs[1, 0].set_title('546V')
 axs[1, 1].scatter(x4, y4)
 axs[1, 1].plot(x4, fit4, 'tab:red')
-axs[1, 1].set_title('v4')
+axs[1, 1].set_title('56.5V')
 
 for ax in axs.flat:
-    ax.set(xlabel='x-label', ylabel='y-label')
+    ax.set(xlabel='Area[nWb]', ylabel='Count')
 
 
 
 fig, axs = plt.subplots(2, 2)
-axs[0, 0].plot(x5, y5)
-axs[0, 0].set_title('v5')
+axs[0, 0].scatter(x5, y5)
+axs[0, 0].set_title('57V')
 axs[0, 0].plot(x5, fit5, 'tab:orange')
 
-axs[0, 1].plot(x6, y6)
+axs[0, 1].scatter(x6, y6)
 axs[0, 1].plot(x6, fit6,'tab:purple')
-axs[0, 1].set_title('v6')
-axs[1, 0].plot(x7, y7)
+axs[0, 1].set_title('57.5V')
+axs[1, 0].scatter(x7, y7)
 axs[1, 0].plot(x7, fit7, 'tab:green')
-axs[1, 0].set_title('v7')
+axs[1, 0].set_title('58V')
 
 for ax in axs.flat:
-    ax.set(xlabel='x-label', ylabel='y-label')
+    ax.set(xlabel='Area[nWb]', ylabel='Count')
 
 
 
@@ -202,31 +202,32 @@ print('par7=',par7)
 
 fig, axs = plt.subplots(2, 2)
 axs[0, 0].errorbar(x, peaks[0,0:6],Dy[0,0:6], fmt="o")
-axs[0, 0].set_title('v1')
+axs[0, 0].set_title('55V')
 axs[0, 0].plot(x, func1(x,*par1), 'tab:orange')
 
 axs[0, 1].errorbar(x, peaks[1,0:6],Dy[1,0:6], fmt="o")
 axs[0, 1].plot(x, func1(x,*par2),'tab:purple')
-axs[0, 1].set_title('v2')
+axs[0, 1].set_title('55.5V')
 axs[1, 0].errorbar(x, peaks[2,0:6],Dy[2,0:6], fmt="o")
 axs[1, 0].plot(x, func1(x,*par3), 'tab:green')
-axs[1, 0].set_title('v3')
+axs[1, 0].set_title('56V')
 axs[1, 1].errorbar(x, peaks[3,0:6],Dy[3,0:6], fmt="o")
 axs[1, 1].plot(x, func1(x,*par4), 'tab:red')
-axs[1, 1].set_title('v4')
+axs[1, 1].set_title('56.5V')
 
 fig, axs = plt.subplots(2, 2)
 axs[0, 0].errorbar(x, peaks[4,0:6],Dy[4,0:6], fmt="o")
-axs[0, 0].set_title('v5')
+axs[0, 0].set_title('57V')
 axs[0, 0].plot(x, func1(x,*par5), 'tab:orange')
 
 axs[0, 1].errorbar(x, peaks[5,0:6],Dy[5,0:6], fmt="o")
 axs[0, 1].plot(x, func1(x,*par6),'tab:purple')
-axs[0, 1].set_title('v6')
+axs[0, 1].set_title('57.5V')
 axs[1, 0].errorbar(x, peaks[6,0:6],Dy[6,0:6], fmt="o")
 axs[1, 0].plot(x, func1(x,*par7), 'tab:green')
-axs[1, 0].set_title('v7')
-
+axs[1, 0].set_title('58V')
+for ax in axs.flat:
+    ax.set(xlabel='Peak Index', ylabel='Charge/e')
 
 plt.show()
 
@@ -248,10 +249,14 @@ parametri, covarianza = curve_fit(func1, V, gain, p0=(100000,0),sigma=sig)
 print('guadagno=',parametri)
 print(np.sqrt(covarianza[0,0]))
 
-
+print('covarianza=',covarianza)
 
 plt.errorbar(V, gain,yerr=np.sqrt(covarianza[0,0]),fmt="o")
+
+
 plt.plot(V,func1(V,*parametri))
+plt.xlabel('Tensione OV [V]')
+plt.ylabel('Gain')
 
 
 plt.show()
@@ -275,10 +280,8 @@ plt.show()
 V_OV=np.array(V+(parametri[1]/parametri[0]))
 print(V_OV)
 C=[]
-for l in range(7):
-    C=np.append(C,(par[0+2*l:14]*1.602176634e-19)/V_OV[l])
 
+p,c= curve_fit(func1,V_OV,gain,sigma=sig)
 
-Ccel=np.mean(C)
-
-print(Ccel)
+print(p[0]*1.602e-19)
+print(np.sqrt(c[0,0])*1.602e-19)
