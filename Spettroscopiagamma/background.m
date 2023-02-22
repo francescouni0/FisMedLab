@@ -14,10 +14,12 @@ x2 = [500 350 850 1270 1515 1930];
 
 peak_chn = [113];
 sigma = [0];
+error_chn = [0];
 
 for i = 1:6
-    [m, s] = peak_analysis_background(bkg_norm, x1(i), x2(i));
+    [m, s, me] = peak_analysis_background(bkg_norm, x1(i), x2(i));
     peak_chn = [peak_chn round(m)];
+    error_chn = [error_chn me];
     sigma = [sigma s];
 end
 
@@ -35,8 +37,12 @@ plot(energy, bkg_norm, 'k', ...
     energy(1720:1930), bkg_norm(1720:1930), 'r', ...
     'LineWidth', 1)
 xlim([0 1600])
+ylim([0 1.1])
+xlabel('Energy[keV]')
+ylabel('Normalized Occurrence[a.u.]')
+title('Background spectrum')
 hold on
-s1 = scatter(peak_energy(1), bkg_norm(peak_chn(1)), 25, 'blue', 'filled') %Pb82 K-line
+s1 = scatter(peak_energy(1), bkg_norm(peak_chn(1)), 25, 'blue', 'filled') %Pb K-line
 s2 = scatter(peak_energy(2), bkg_norm(peak_chn(2)), 25, 'blue', 'filled') %Pb214
 s3 = scatter(peak_energy(3), bkg_norm(peak_chn(3)), 25, 'blue', 'filled') %Pb214
 s4 = scatter(peak_energy(4), bkg_norm(peak_chn(4)), 25, 'blue', 'filled') %Bi214
@@ -47,45 +53,45 @@ hold off
 
 dt1 = datatip(s1);
 s1.DataTipTemplate.DataTipRows(1).Label = 'Energy[KeV]:';
-s1.DataTipTemplate.DataTipRows(2).Label = 'Pb82 K-line';
+s1.DataTipTemplate.DataTipRows(2).Label = 'Pb K-line';
 s1.DataTipTemplate.DataTipRows(2).Value = '';
-s1.DataTipTemplate.DataTipRows(3).Label = '';
+s1.DataTipTemplate.DataTipRows(3).Label = 'Picco I';
 s1.DataTipTemplate.DataTipRows(3).Value = '';
 dt2 = datatip(s2);
 s2.DataTipTemplate.DataTipRows(1).Label = 'Energy[KeV]:';
 s2.DataTipTemplate.DataTipRows(2).Label = 'Pb214';
 s2.DataTipTemplate.DataTipRows(2).Value = '';
-s2.DataTipTemplate.DataTipRows(3).Label = '';
+s2.DataTipTemplate.DataTipRows(3).Label = 'Picco III';
 s2.DataTipTemplate.DataTipRows(3).Value = '';
 dt3 = datatip(s3);
 s3.DataTipTemplate.DataTipRows(1).Label = 'Energy[KeV]:';
 s3.DataTipTemplate.DataTipRows(2).Label = 'Pb214';
 s3.DataTipTemplate.DataTipRows(2).Value = '';
-s3.DataTipTemplate.DataTipRows(3).Label = '';
+s3.DataTipTemplate.DataTipRows(3).Label = 'Picco II';
 s3.DataTipTemplate.DataTipRows(3).Value = '';
 dt4= datatip(s4);
 s4.DataTipTemplate.DataTipRows(1).Label = 'Energy[KeV]:';
 s4.DataTipTemplate.DataTipRows(2).Label = 'Bi214';
 s4.DataTipTemplate.DataTipRows(2).Value = '';
-s4.DataTipTemplate.DataTipRows(3).Label = '';
+s4.DataTipTemplate.DataTipRows(3).Label = 'Picco IV';
 s4.DataTipTemplate.DataTipRows(3).Value = '';
 dt5 = datatip(s5);
 s5.DataTipTemplate.DataTipRows(1).Label = 'Energy[KeV]:';
 s5.DataTipTemplate.DataTipRows(2).Label = 'Convoluzione Ac228';
 s5.DataTipTemplate.DataTipRows(2).Value = '';
-s5.DataTipTemplate.DataTipRows(3).Label = '';
+s5.DataTipTemplate.DataTipRows(3).Label = 'Picco V';
 s5.DataTipTemplate.DataTipRows(3).Value = '';
 dt6 = datatip(s6);
 s6.DataTipTemplate.DataTipRows(1).Label = 'Energy[KeV]:';
 s6.DataTipTemplate.DataTipRows(2).Label = 'Bi214';
 s6.DataTipTemplate.DataTipRows(2).Value = '';
-s6.DataTipTemplate.DataTipRows(3).Label = '';
+s6.DataTipTemplate.DataTipRows(3).Label = 'Picco VI';
 s6.DataTipTemplate.DataTipRows(3).Value = '';
 dt7 = datatip(s7);
 s7.DataTipTemplate.DataTipRows(1).Label = 'Energy[KeV]:';
 s7.DataTipTemplate.DataTipRows(2).Label = 'K40';
 s7.DataTipTemplate.DataTipRows(2).Value = '';
-s7.DataTipTemplate.DataTipRows(3).Label = '';
+s7.DataTipTemplate.DataTipRows(3).Label = 'Picco VII';
 s7.DataTipTemplate.DataTipRows(3).Value = '';
 
 figure
@@ -99,7 +105,10 @@ semilogy(energy, bkg_norm, 'k', ...
     energy(1720:1930), bkg_norm(1720:1930), 'r', ...
     'LineWidth', 1)
 xlim([0 1600])
-ylim([0.004 1])
+ylim([0.004 1.1])
+xlabel('Energy[keV]')
+ylabel('Normalized Occurrence[a.u.]')
+title('Background spectrum')
 hold on
 s1_ = scatter(peak_energy(1), bkg_norm(peak_chn(1)), 25, 'blue', 'filled')
 s2_ = scatter(peak_energy(2), bkg_norm(peak_chn(2)), 25, 'blue', 'filled')

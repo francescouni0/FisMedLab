@@ -1,6 +1,7 @@
-cd 'C:\Users\simol\Desktop\Laboratorio FisMed\SiPM\curva IV inversa'
+cd 'C:\Users\simol\OneDrive\Documenti\GitHub\FisMedLab\Sipm\Curve_IV'
 
 figure
+sgtitle('I-V Curve (Reverse Bias)')
 subplot(2, 2, 1)
 curvaIVinv0
 subplot(2, 2, 2)

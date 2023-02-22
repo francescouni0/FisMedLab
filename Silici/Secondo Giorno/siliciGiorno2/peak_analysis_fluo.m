@@ -15,10 +15,10 @@ channel = transpose(linspace(1, length(data), length(data)));
 % title('Noise')
 % xlim([0 500])
 
-% fig = figure;
-% semilogy(channel,spectrum)
-% title('Spectrum')
-% xlim([0 500])
+fig = figure;
+semilogy(channel,spectrum)
+title('Spectrum')
+xlim([0 500])
 
 % datacursormode on
 % pointA = datacursormode(fig);

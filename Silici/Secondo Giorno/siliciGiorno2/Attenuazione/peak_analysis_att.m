@@ -1,4 +1,4 @@
-function counts = peak_analysis_att(file_name)
+function [counts, err_counts] = peak_analysis_att(file_name)
 
 data = table2array(importfile_spe(file_name));
 channel = transpose(linspace(1, length(data), length(data)));
@@ -27,5 +27,7 @@ peakfit = fit(transpose(index), transpose(peak), 'gauss1');
 % plot(peakfit, index, peak)
 
 counts = peakfit.a1;
+ci = confint(peakfit);
+err_counts = (ci(2,1)-ci(1,1)) / (2);
 
 end

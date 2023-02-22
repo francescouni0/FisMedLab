@@ -2,27 +2,27 @@ clear all
 close all
 clc
 
-data = importdata('RC_data_58V_good.txt').data;
+data = importdata('RC_data_57V_good.txt').data;
 time_diff = data(:, 1)*0.2;
 ampl = data(:, 2);
 
 
-outlier1 = ~excludedata(time_diff,ampl,'range',[0.175 inf]);
-outlier2 = ampl>((0.00187414.*time_diff)+0.0825);
+outlier1 = ~excludedata(time_diff,ampl,'range',[0.143 inf]);
+outlier2 = ampl>((0.0013667.*time_diff)+0.07);
 outliers = outlier1|outlier2;
 % fit_func1 = @(a, b, c, x) -a*exp(-b.*x)+c;
 % ampl_fit = fit(time_diff, ampl, fit_func1, 'Exclude', outliers, 'Start', [0.11 0.005 10])
 fit_func1 = @(a, b, x) a*(1-exp(-b.*x));
-ampl_fit = fit(time_diff, ampl, fit_func1, 'Exclude', outliers, 'Start', [0.11 0.04])
+ampl_fit = fit(time_diff, ampl, fit_func1, 'Exclude', outliers, 'Start', [0.11 0.005])
 
 % figure
 % scatter(time_diff, ampl, 3, 'filled')
 % hold on
-% plot(time_diff, ((0.00187414.*time_diff)+0.0825))
+% plot(time_diff, ((0.0013667.*time_diff)+0.07))
 % hold off
 
 % figure
-subplot(2,1,1)
+subplot(2, 1, 1)
 plot(ampl_fit, time_diff, ampl)
 set(gca, 'xscale', 'log', 'yscale', 'log')
 xlabel('Time difference [ns]')
@@ -40,13 +40,13 @@ fit_func2 = @(a, b, c, x) a*exp(-b*(x-c)).*x;
 occ_fit = fit(transpose(dt), transpose(occ), fit_func2, 'Exclude', dt<165, 'Start', [0.1 0.00005 165])
 
 % figure
-subplot(2,1,2)
+subplot(2, 1, 2)
 plot(occ_fit, dt, occ)
 set(gca, 'xscale', 'log', 'yscale', 'log')
 xlabel('Time difference [ns]')
 ylabel('Occurrence')
 ylim([1 1e3])
-sgtitle('Correlated noise, OV=5.33V')
+sgtitle('Correlated noise, OV=4.33')
 
 % figure
 % plot(dt, occ)
@@ -64,32 +64,25 @@ N_tot = sum(occ)
 P = (N_rc/N_tot)*100
 
 %% CT Probability
+x = linspace(0, 100)
+y = 
+
 figure
-scatter(time_diff, ampl, 5, "blue", "filled")
-set(gca, 'xscale', 'log', 'yscale', 'log')
+scatter(time_diff, ampl, 5, "red", "filled")
+yline(0.2)
+yline(0.16)
+xline(1e2)
+% set(gca, 'xscale', 'log', 'yscale', 'log')
 xlabel('Time difference [ns]')
 ylabel('Amplitude [a.u.]')
-ylim([min(ampl) 0.4])
-yl1 = yline(0.245, '-', 'First Threshold');
-yl2 = yline(0.20, '-', 'Second Threshold');
-yl1.Color = [0.6350 0.0780 0.1840];
-yl1.LineWidth = 1;
-yl2.Color = [0.6350 0.0780 0.1840];
-yl2.LineWidth = 1;
-yl1.LabelHorizontalAlignment = "left";
-yl2.LabelHorizontalAlignment = "left";
+ylim([min(ampl) max(ampl)])
 
 time_diff1 = time_diff<1e2;
 time_diff2 = time_diff>1e2;
 ampl1 = ampl(time_diff1);
 ampl2 = ampl(time_diff2);
 
-ampl1 = ampl1(ampl1>0.245);
-ampl2 = ampl2(ampl2>0.20);
+ampl1 = ampl1(ampl1>0.2);
+ampl2 = ampl2(ampl2>0.16);
 N_ct = length(ampl1)+length(ampl2);
 P_ct = (N_ct/N_tot)*100
-
-roi = drawpolygon("Color", [0.4660 0.6740 0.1880], 'MarkerSize', 3, 'LineWidth', 1);
-counts = inROI(roi, time_diff, ampl);
-[N,edges] = histcounts(counts);
-P_ct2 = (N(2)/N_tot)*100

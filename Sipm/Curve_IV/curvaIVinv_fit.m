@@ -1,4 +1,4 @@
-function [fitresult, gof] = createFit(V, I, x_BD, y_lim)
+function [fitresult, gof] = createFit(V, I, x_BD, y_lim, w)
 %CREATEFIT(V,I)
 %  Create a fit.
 %
@@ -15,14 +15,23 @@ function [fitresult, gof] = createFit(V, I, x_BD, y_lim)
 
 
 %% Fit: 'untitled fit 1'.
-[xData, yData] = prepareCurveData( V, I );
+[xData, yData, weights] = prepareCurveData( V, I, w );
 
 % Set up fittype and options.
-ft = fittype( 'exp(a*x+b)+c*(x-d)^2', 'independent', 'x', 'dependent', 'y' );
+% % ft = fittype( 'b+c*(x-d)^2', 'independent', 'x', 'dependent', 'y' );
+% ft = fittype( 'exp(a*x+b)+c*(1-exp(d*(x-e)))*((x-e)/(f-x))', 'independent', 'x', 'dependent', 'y' );
+ft = fittype( 'exp(a*x+b)+c*(1-exp(d*(x-e)))*((x-e))*((f-e)/(f-x))', 'independent', 'x', 'dependent', 'y' );
 excludedPoints = xData < x_BD;
 opts = fitoptions( 'Method', 'NonlinearLeastSquares' );
 opts.Display = 'Off';
-opts.StartPoint = [1 1 1 1];
+opts.Weights = weights;
+% % opts.Lower = [I(x_BD-2) -inf -inf];
+% % opts.Upper = [I(x_BD-1) inf inf];
+% % opts.StartPoint = [I(x_BD-1) 1 x_BD];
+% opts.StartPoint = [0.5 -20 13 1 52 -1];
+opts.StartPoint = [1 2 -0.1 20 52 7];
+opts.Lower = [-1 -inf -inf 0 52 0];
+opts.Upper = [1 inf -0.01 inf 54 10];
 opts.Exclude = excludedPoints;
 
 % Fit model to data.
@@ -31,15 +40,29 @@ opts.Exclude = excludedPoints;
 % Plot fit with data.
 figure( 'Name', 'Fit' );
 h = plot( fitresult, xData, yData, excludedPoints );
+hold on
+err = (1./w).^2;
+errorbar(V, I, err, "LineStyle", "none", "Color", "black");
+hold off
 legend( h, 'Data', 'Excluded data', 'Model fit', 'Location', 'NorthWest', 'Interpreter', 'none' );
 % Label axes
-xlabel( 'V', 'Interpreter', 'none' );
+xlabel( 'Voltage[V]', 'Interpreter', 'none' );
 xlim([0 60])
-ylabel( 'I', 'Interpreter', 'none' );
+ylabel( 'Current[nA]', 'Interpreter', 'none' );
 ylim([0 y_lim])
 grid on
 
-V_BD = fitresult.d
+fitresult
+
+% V_BD = fitresult.d
+% ci = confint(fitresult);
+% VBD_error = (ci(2,3)-ci(1,3)) / (2)
+% 
+% fitfun = @(x) fitresult.b+fitresult.c.*(x-fitresult.d).^2;
+% chi_quadro = sum(((fitfun(xData(xData>=x_BD))-yData(xData>=x_BD)).^2)./((err(xData>=x_BD)).^2))
+% dof=gof.dfe
+% chi_ridotto = chi_quadro/gof.dfe
+
 
 
 

@@ -39,9 +39,9 @@ errorbar(V, I, err, "LineStyle", "none", "Color", "black");
 hold off
 legend( h, 'Data', 'Excluded data', 'Fit', 'Location', 'NorthWest', 'Interpreter', 'none' );
 % Label axes
-title('I vs. V (Polarizzazione diretta)');
-xlabel( 'V', 'Interpreter', 'none' );
-ylabel( 'I', 'Interpreter', 'none' );
+title('I-V Curve (Direct Bias)');
+xlabel( 'Voltage[V]', 'Interpreter', 'none' );
+ylabel( 'Current[nA]', 'Interpreter', 'none' );
 grid on
 
 % Create a figure for the residuals.
@@ -52,15 +52,22 @@ h = plot( fitresult, xData, yData, excludedPoints, 'residuals' );
 legend( h, 'Residuals', 'Excluded residuals', 'Zero Line', 'Location', 'NorthEast', 'Interpreter', 'none' );
 % Label axes
 title('Residuals');
-xlabel( 'V', 'Interpreter', 'none' );
-ylabel( 'I', 'Interpreter', 'none' );
+xlabel( 'Voltage[V]', 'Interpreter', 'none' );
+ylabel( 'Current[nA]', 'Interpreter', 'none' );
 grid on
+
+disp('Fit Results')
+disp(fitresult)
 
 disp('Goodness of Fit')
 disp(gof)
 
 disp('Threshold Voltage')
 x = fzero(fitresult,0)
+
+ci = confint(fitresult);
+m_error = (ci(2,1)-ci(1,1)) / (2)
+q_error = (ci(2,2)-ci(1,2)) / (2)
 
 end
 
