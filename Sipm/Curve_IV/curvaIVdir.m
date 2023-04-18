@@ -1,4 +1,4 @@
-cd 'C:\Users\simol\Desktop\Laboratorio FisMed\SiPM\curva IV diretta'
+cd 'C:\Users\simol\OneDrive\Documenti\GitHub\FisMedLab\Sipm\Curve_IV'
 
 T = readtable("curvaIVdiretta.txt");
 

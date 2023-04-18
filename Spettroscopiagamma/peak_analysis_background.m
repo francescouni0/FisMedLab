@@ -1,4 +1,4 @@
-function [mean, sigma] = peak_analysis_background(spectrum, x1, x2)
+function [mean, sigma, mean_error] = peak_analysis_background(spectrum, x1, x2)
 xy_A = [x1 spectrum(x1)];
 xy_B = [x2 spectrum(x2)];
 
@@ -18,4 +18,7 @@ peakfit = fit(transpose(index), transpose(peak), 'gauss1');
 
 mean = peakfit.b1;
 sigma = peakfit.c1;
+
+ci = confint(peakfit)
+mean_error = (ci(2,2)-ci(1,2)) / (2);
 end

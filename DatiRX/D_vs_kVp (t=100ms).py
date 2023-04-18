@@ -26,7 +26,7 @@ plt.figure()
 plt.plot(kVp, fit_func(kVp, *params), 'r-', label='Fit')
 plt.errorbar(kVp, Dose, yerr=sigma_D, fmt='o', ms='3', mec='green', ecolor='black', barsabove=False, label='Dose')
 plt.title('Dose vs. Tube Voltage')
-plt.xlabel('Voltage[kV]')
+plt.xlabel('Voltage[kVp]')
 plt.ylabel('Dose[uGy]')
 plt.legend()
 
@@ -35,7 +35,7 @@ residuals = Dose - Dose_fit
 plt.figure()
 plt.plot(kVp, residuals, 'bo')
 plt.title('Residuals plot')
-plt.xlabel('Voltage[kV]')
+plt.xlabel('Voltage[kVp]')
 plt.ylabel('Residual[a.u.]')
 
 chi_squared = np.sum((residuals/sigma_D)**2)
