@@ -93,7 +93,7 @@ int main(int argc, char** argv) {
     // ****************************************************************
     
     info->seed                = (G4int)time(0); // use fixed seed for tests (e.g. 0), random number for simulation, e.g. (G4int)time(0);
-    info->optPhysVerb         = 1;  // verbosity level of optical photons physics (0 -> 1)
+    info->optPhysVerb         = 2;  // verbosity level of optical photons physics (0 -> 1)
     //info->verbose             = 2;   // global verbose level (0 -> 2), overidden by macro if given
     info->stepLimiter         = 100.0*um; // to be changed
     
