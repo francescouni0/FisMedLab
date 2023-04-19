@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/francesco/FisMedLab/LAB2023-20230418T123034Z-001/LAB2023
+CMAKE_SOURCE_DIR = /home/francesco/FisMedLab/SimPlastici
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/francesco/FisMedLab/LAB2023-20230418T123034Z-001/LAB2023/build
+CMAKE_BINARY_DIR = /home/francesco/FisMedLab/SimPlastici/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/francesco/FisMedLab/LAB2023-20230418T123034Z-001/LAB2023/build/CMakeFiles /home/francesco/FisMedLab/LAB2023-20230418T123034Z-001/LAB2023/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/francesco/FisMedLab/SimPlastici/build/CMakeFiles /home/francesco/FisMedLab/SimPlastici/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/francesco/FisMedLab/LAB2023-20230418T123034Z-001/LAB2023/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/francesco/FisMedLab/SimPlastici/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

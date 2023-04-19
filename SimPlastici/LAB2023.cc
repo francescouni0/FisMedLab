@@ -206,8 +206,11 @@ int main(int argc, char** argv) {
     ui->SessionStart();
     delete ui;
   }
-  
-  G4String posList[] = {"-180.0", "-140.0", "-100.0", "-60.0", "-20.0", "0.0", "20.0", "60.0", "100.0", "140.0", "180.0"};
+
+
+  G4String posList[] = {"-180.0"};
+
+ // G4String posList[] = {"-180.0", "-140.0", "-100.0", "-60.0", "-20.0", "0.0", "20.0", "60.0", "100.0", "140.0", "180.0"};
   //G4String posList[] = {"-180.0", "180.0"};
   G4int numPos = sizeof(posList)/sizeof(G4String);
   

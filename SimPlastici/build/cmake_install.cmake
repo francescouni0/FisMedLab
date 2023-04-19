@@ -1,4 +1,4 @@
-# Install script for directory: /home/francesco/FisMedLab/LAB2023-20230418T123034Z-001/LAB2023
+# Install script for directory: /home/francesco/FisMedLab/SimPlastici
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -49,7 +49,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/LAB2023"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/francesco/FisMedLab/LAB2023-20230418T123034Z-001/LAB2023/build/LAB2023")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/francesco/FisMedLab/SimPlastici/build/LAB2023")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/LAB2023" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/LAB2023")
     file(RPATH_CHANGE
@@ -70,5 +70,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/francesco/FisMedLab/LAB2023-20230418T123034Z-001/LAB2023/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/francesco/FisMedLab/SimPlastici/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
