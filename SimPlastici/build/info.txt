@@ -3,10 +3,10 @@ number of simulated events: 10
 type of particle: gamma
 beam energy: 511.000 keV
 beam position: 0.00 mm, -5.00 mm, -180.00 mm
-beam direction: 0.00, 1.00, 0.00 
+beam direction: 0.00, -1.00, 0.00 
 
 World dimensions: 1000.00 m, 1000.00 m, 1000.00 m 
-Scintillator dimensions: 20.00 mm, 3.00 mm, 440.00 mm
+Scintillator dimensions: 3.00 mm, 20.00 mm, 3.00 mm
 Scintillator position: 0.00 mm, 0.00 mm, 0.00 mm
 Grease thickness: 1000.00 um
 Wrapping reflectivity: 0.9900
@@ -20,6 +20,6 @@ Output files headers:
 detectN_PosZ.raw:
 detection(float(info->event_id), track->GetKineticEnergy()/eV, time/ns, pos[0]/mm, pos[1]/mm)
 
-Simulation seed: 1681893489
+Simulation seed: 1681899969
 
 timers (s): 0.000000 (real), 0.000000 (system), 0.000000 (user)

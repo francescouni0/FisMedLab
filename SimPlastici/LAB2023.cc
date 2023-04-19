@@ -103,9 +103,9 @@ int main(int argc, char** argv) {
     info->worldSize[2]        = 1000.0; // mm
     
     // Scintillator dimensions
-    info->scintSize[0]        =  20.0; // mm
-    info->scintSize[1]        =   3.0; // mm scintillator thickness
-    info->scintSize[2]        = 440.0; // mm bar length
+    info->scintSize[0]        =  3.0; // mm
+    info->scintSize[1]        =   20.0; // mm scintillator thickness
+    info->scintSize[2]        = 3.0; // mm bar length
     
     // Position of scintillator in the world volume
     info->scintPos[0] 	      =  0.0; // mm
@@ -217,7 +217,7 @@ int main(int argc, char** argv) {
   for (int currPos = 0; currPos < numPos; currPos++){
     
     G4cout << "beam position: " << posList[currPos] << " mm" << G4endl;
-    UImanager->ApplyCommand("/gps/position   0.0 -5.0 "+posList[currPos]+" mm");
+    UImanager->ApplyCommand("/gps/position   0.0 -12.0 "+posList[currPos]+" mm");
     
     // clears output vectors before run
     detection_vector1.clear();         

@@ -43,9 +43,9 @@ class LabDetectorConstruction : public G4VUserDetectorConstruction
     
     G4bool checkOverlaps;
     
-    G4Element *C, *H, *O, *Si;
+    G4Element *C, *H, *O, *Si, *Lu, *Y;
 
-    G4Material *Air, *EJ200, *Grease;
+    G4Material *Air, *EJ200, *Grease,*LYSO;
      
     G4Box *solidWorld, *solidScint, *solidGrease1, *solidGrease2, *solidSiPM1, *solidSiPM2; 
     

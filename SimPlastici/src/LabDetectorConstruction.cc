@@ -29,9 +29,9 @@ G4VPhysicalVolume* LabDetectorConstruction::Construct(){
     constructMaterialPropertiesTable();
     constructWorld();
     constructScintillator();
-    constructGrease();
-    constructSiPM();
-    constructOpticalSurfaces();
+    //constructGrease();
+    //constructSiPM();
+    //constructOpticalSurfaces();
     return physWorld;
   
 }
@@ -49,6 +49,8 @@ void LabDetectorConstruction::defineMaterials() {
     H  = nist->FindOrBuildElement("H"); 
     O  = nist->FindOrBuildElement("O");
     Si = nist->FindOrBuildElement("Si");
+    Y = nist->FindOrBuildElement("Y");
+    Lu = nist->FindOrBuildElement("Lu");
     
     // NIST Materials
     Air      = nist->FindOrBuildMaterial("G4_AIR");
@@ -67,6 +69,13 @@ void LabDetectorConstruction::defineMaterials() {
     Grease->AddElement(O,1); 
     Grease->AddElement(Si,1);
 
+     //LYSO
+    LYSO = new G4Material("LYSO", 7.1*g/cm3, 4);
+    LYSO->AddElement(Lu, 71.43*perCent);
+    LYSO->AddElement(Y,  4.76*perCent);
+    LYSO->AddElement(Si, 6.81*perCent);
+    LYSO->AddElement(O,  17*perCent);
+
 }
 
 
@@ -74,6 +83,19 @@ void LabDetectorConstruction::constructMaterialPropertiesTable() {
   
     G4double photon_energies[] = {info->enRange[0]*eV, info->enRange[1]*eV};
     const G4int num_ph_en = sizeof(photon_energies)/sizeof(G4double);
+
+  //    if (1){
+  //    G4cout << G4endl;
+  //    G4cout <<"Internal units: " << photon_energies[0] << G4endl;
+  //    G4cout <<"Best units: " << G4BestUnit(photon_energies[0],"Energy") << G4endl;
+  //   G4cout << " " <<photon_energies[0]*eV << "*eV" << G4endl;
+  //    G4cout << " " <<photon_energies[0]/eV << "/eV" << G4endl;
+  //    G4cout << " " <<photon_energies[0]*keV << "*keV" << G4endl;
+  //    G4cout << " " <<photon_energies[0]/keV << "/keV" << G4endl;
+  //    G4cout << G4endl;
+  //    exit(EXIT_FAILURE);
+
+    //}
  
     // Air
     G4double air_rindex[]  = {1.0, 1.0};
@@ -106,12 +128,17 @@ void LabDetectorConstruction::constructMaterialPropertiesTable() {
     ej200_MPT->AddConstProperty("SCINTILLATIONRISETIME1", 0.9*ns);   
     //EJ200->GetIonisation()->SetBirksConstant(3.00e-3*cm/MeV); // <------------- UPDATE
 
+
+
     // print tables of material properties
     G4cout << "----- Material properties table printed by DetectorConstruction: -----" << G4endl;
     G4cout << *(G4Material::GetMaterialTable()) << G4endl;
     G4cout << "----- End on material properties table -----" << G4endl;
     G4cout << G4endl;
-    
+
+   
+
+        
 }
 
 void LabDetectorConstruction::constructWorld() {
@@ -122,16 +149,20 @@ void LabDetectorConstruction::constructWorld() {
 
 }
 
+
+
 void LabDetectorConstruction::constructScintillator() {
   
     solidScint = new G4Box("Scintillator", 0.5*info->scintSize[0]*mm, 0.5*info->scintSize[1]*mm, 0.5*info->scintSize[2]*mm);  
-    logicScint = new G4LogicalVolume(solidScint, EJ200, "Scintillator");            
+    logicScint = new G4LogicalVolume(solidScint, LYSO, "Scintillator");            
     physScint  = new G4PVPlacement(0, G4ThreeVector(info->scintPos[0]*mm, info->scintPos[1]*mm, info->scintPos[2]*mm), logicScint, "Scintillator", logicWorld, false, 0, checkOverlaps);  
     
     fStepLimit = new G4UserLimits(info->stepLimiter);
     logicScint->SetUserLimits(fStepLimit);
     
 }
+
+
 
 void LabDetectorConstruction::constructGrease() {
   
