@@ -1,8 +1,8 @@
-LECROYHDO9204-MSöv,30454,Histogram
-Segments,1,SegmentSize,200
-Segment,TrigTime,TimeSinceSegment1
-#1,01-Jan-2009 01:49:35,0                 
-Time,Ampl
+#LECROYHDO9204-MSï¿½v,30454,Histogram
+#Segments,1,SegmentSize,200
+#Segment,TrigTime,TimeSinceSegment1
+##1,01-Jan-2009 01:49:35,0                 
+#Time,Ampl
 -1.388e-09,0
 -1.378e-09,0
 -1.368e-09,0
