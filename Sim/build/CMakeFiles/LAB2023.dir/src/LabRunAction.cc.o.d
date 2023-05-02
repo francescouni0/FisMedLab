@@ -1,5 +1,5 @@
 CMakeFiles/LAB2023.dir/src/LabRunAction.cc.o: \
- /home/francesco/FisMedLab/Sim/LAB2023/src/LabRunAction.cc \
+ /home/francesco/FisMedLab/Sim/src/LabRunAction.cc \
  /usr/include/stdc-predef.h \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Timer.hh \
  /usr/include/x86_64-linux-gnu/sys/times.h /usr/include/features.h \
@@ -190,7 +190,7 @@ CMakeFiles/LAB2023.dir/src/LabRunAction.cc.o: \
  /usr/include/c++/12/bits/chrono.h /usr/include/c++/12/ratio \
  /usr/include/c++/12/ctime /usr/include/c++/12/bits/parse_numbers.h \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Timer.icc \
- /home/francesco/FisMedLab/Sim/LAB2023/include/LabRunAction.hh \
+ /home/francesco/FisMedLab/Sim/include/LabRunAction.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/globals.hh \
  /usr/include/c++/12/algorithm /usr/include/c++/12/bits/stl_algo.h \
  /usr/include/c++/12/bits/algorithmfwd.h \
@@ -233,7 +233,7 @@ CMakeFiles/LAB2023.dir/src/LabRunAction.cc.o: \
  /usr/include/c++/12/bits/std_mutex.h \
  /usr/include/c++/12/bits/unique_lock.h \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4UserRunAction.hh \
- /home/francesco/FisMedLab/Sim/LAB2023/include/LabInfo.hh \
+ /home/francesco/FisMedLab/Sim/include/LabInfo.hh \
  /usr/include/c++/12/stdlib.h /usr/include/c++/12/atomic \
  /usr/include/c++/12/bits/atomic_base.h \
  /usr/include/c++/12/bits/atomic_lockfree_defines.h \

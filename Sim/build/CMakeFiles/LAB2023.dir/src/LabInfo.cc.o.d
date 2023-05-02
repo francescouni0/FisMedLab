@@ -1,7 +1,6 @@
 CMakeFiles/LAB2023.dir/src/LabInfo.cc.o: \
- /home/francesco/FisMedLab/Sim/LAB2023/src/LabInfo.cc \
- /usr/include/stdc-predef.h /usr/include/c++/12/stdlib.h \
- /usr/include/c++/12/cstdlib \
+ /home/francesco/FisMedLab/Sim/src/LabInfo.cc /usr/include/stdc-predef.h \
+ /usr/include/c++/12/stdlib.h /usr/include/c++/12/cstdlib \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -179,7 +178,7 @@ CMakeFiles/LAB2023.dir/src/LabInfo.cc.o: \
  /usr/include/c++/12/iostream \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4SystemOfUnits.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Units/SystemOfUnits.h \
- /home/francesco/FisMedLab/Sim/LAB2023/include/LabInfo.hh \
+ /home/francesco/FisMedLab/Sim/include/LabInfo.hh \
  /usr/include/c++/12/atomic /usr/include/c++/12/bits/atomic_base.h \
  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Types.hh \

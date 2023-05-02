@@ -1,7 +1,7 @@
 CMakeFiles/LAB2023.dir/src/LabPrimaryGeneratorAction.cc.o: \
- /home/francesco/FisMedLab/Sim/LAB2023/src/LabPrimaryGeneratorAction.cc \
+ /home/francesco/FisMedLab/Sim/src/LabPrimaryGeneratorAction.cc \
  /usr/include/stdc-predef.h \
- /home/francesco/FisMedLab/Sim/LAB2023/include/LabPrimaryGeneratorAction.hh \
+ /home/francesco/FisMedLab/Sim/include/LabPrimaryGeneratorAction.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4VUserPrimaryGeneratorAction.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/globals.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ios.hh \
@@ -223,7 +223,7 @@ CMakeFiles/LAB2023.dir/src/LabPrimaryGeneratorAction.cc.o: \
  /usr/include/c++/12/bits/parse_numbers.h \
  /usr/include/c++/12/bits/std_mutex.h \
  /usr/include/c++/12/bits/unique_lock.h \
- /home/francesco/FisMedLab/Sim/LAB2023/include/LabInfo.hh \
+ /home/francesco/FisMedLab/Sim/include/LabInfo.hh \
  /usr/include/c++/12/stdlib.h /usr/include/c++/12/atomic \
  /usr/include/c++/12/bits/atomic_base.h \
  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
