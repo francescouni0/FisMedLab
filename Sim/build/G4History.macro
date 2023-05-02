@@ -40,5 +40,22 @@
 /vis/viewer/set/autoRefresh true
 /vis/viewer/refresh
 /vis/verbose warnings
+/gps/direction 0.0 0.0 1.0
 /run/beamOn 1
 /vis/scene/notifyHandlers scene-0
+/gps/direction 0 1 0
+/run/beamOn 1
+/run/beamOn [<numberOfEvent>] [<macroFile>] [<nSelect>]
+/run/beamOn 100
+/vis/set/touchable World 0 Scintillator 0
+/gps/position   0.0 -5.0 -180.0 mm
+/gps/position   0.0 -5.0 -140.0 mm
+/gps/position   0.0 -5.0 -100.0 mm
+/gps/position   0.0 -5.0 -60.0 mm
+/gps/position   0.0 -5.0 -20.0 mm
+/gps/position   0.0 -5.0 0.0 mm
+/gps/position   0.0 -5.0 20.0 mm
+/gps/position   0.0 -5.0 60.0 mm
+/gps/position   0.0 -5.0 100.0 mm
+/gps/position   0.0 -5.0 140.0 mm
+/gps/position   0.0 -5.0 180.0 mm

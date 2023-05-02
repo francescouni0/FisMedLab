@@ -33,11 +33,11 @@ void LabPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent){
 //   fParticleGun->SetParticleEnergy(info->beamEnergy*eV);
   
   if (fParticleGun->GetParticleDefinition()->GetParticleName()=="opticalphoton"){
-      G4ThreeVector normal (1., 0., 0.);
+      G4ThreeVector normal (0., 0., 1.);
       G4ThreeVector kphoton = fParticleGun->GetParticleMomentumDirection();
       G4ThreeVector product = normal.cross(kphoton);
       G4double modul2       = product*product;
-      
+
       G4ThreeVector e_perpend (0., 0., 1.);
       if (modul2 > 0.) e_perpend = (1./std::sqrt(modul2))*product;
       G4ThreeVector e_paralle    = e_perpend.cross(kphoton);
