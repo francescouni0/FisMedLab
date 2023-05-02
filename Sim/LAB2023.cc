@@ -143,7 +143,7 @@ int main(int argc, char** argv) {
     info->greaseToSiPMFinish = "polished";    
     
     // Primary beam settings
-    info->numOfEvents         = 10;                          // number of primary particles to generate
+    info->numOfEvents         = 100;                          // number of primary particles to generate
  
  
     // ****************************************************************
