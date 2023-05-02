@@ -233,17 +233,12 @@ CMakeFiles/LAB2023.dir/src/LabActionInitialization.cc.o: \
  /home/francesco/FisMedLab/Sim/include/LabPrimaryGeneratorAction.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4VUserPrimaryGeneratorAction.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/globals.hh \
- /home/francesco/FisMedLab/Sim/include/LabRunAction.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4UserRunAction.hh \
- /home/francesco/FisMedLab/Sim/include/LabSteppingAction.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4UserSteppingAction.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4OpBoundaryProcess.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4OpticalPhoton.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleDefinition.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4IonTable.hh \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_uninitialized.h \
  /usr/include/c++/12/bits/stl_vector.h \
  /usr/include/c++/12/bits/stl_bvector.h \
  /usr/include/c++/12/bits/vector.tcc \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleDefinition.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Units/PhysicalConstants.h \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Units/SystemOfUnits.h \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4PDefManager.hh \
@@ -261,6 +256,28 @@ CMakeFiles/LAB2023.dir/src/LabActionInitialization.cc.o: \
  /usr/include/c++/12/bits/std_thread.h /usr/include/c++/12/thread \
  /usr/include/c++/12/bits/this_thread_sleep.h \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleDefinition.icc \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleTable.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleTableIterator.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleTable.icc \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Ions.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleTable.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleDefinition.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Geantino.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleGun.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4VPrimaryGenerator.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ThreeVector.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4PrimaryVertex.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Allocator.hh \
+ /usr/include/c++/12/cstddef \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4AllocatorPool.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4PrimaryParticle.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleMomentum.hh \
+ /home/francesco/FisMedLab/Sim/include/LabRunAction.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4UserRunAction.hh \
+ /home/francesco/FisMedLab/Sim/include/LabSteppingAction.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4UserSteppingAction.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4OpBoundaryProcess.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4OpticalPhoton.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4OpticalSurface.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Physics2DVector.hh \
  /usr/include/c++/12/fstream \
@@ -272,7 +289,6 @@ CMakeFiles/LAB2023.dir/src/LabActionInitialization.cc.o: \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4SurfaceProperty.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4RandomTools.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4RandomDirection.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ThreeVector.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/Randomize.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Random/Randomize.h \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Random/DualRand.h \
@@ -362,9 +378,6 @@ CMakeFiles/LAB2023.dir/src/LabActionInitialization.cc.o: \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/geomwdefs.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4VPhysicalVolume.icc \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4StepPoint.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Allocator.hh \
- /usr/include/c++/12/cstddef \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4AllocatorPool.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4StepStatus.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4TouchableHandle.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4VTouchable.hh \
@@ -413,7 +426,6 @@ CMakeFiles/LAB2023.dir/src/LabActionInitialization.cc.o: \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/trkdefs.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4DynamicParticle.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4LorentzVector.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleMomentum.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ElectronOccupancy.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4DynamicParticle.icc \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4VUserTrackInformation.hh \

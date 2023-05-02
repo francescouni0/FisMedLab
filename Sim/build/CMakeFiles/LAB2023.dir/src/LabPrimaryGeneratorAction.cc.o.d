@@ -233,6 +233,45 @@ CMakeFiles/LAB2023.dir/src/LabPrimaryGeneratorAction.cc.o: \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Vector/ThreeVector.h \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Utility/defs.h \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Vector/ThreeVector.icc \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4IonTable.hh \
+ /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_uninitialized.h \
+ /usr/include/c++/12/bits/stl_vector.h \
+ /usr/include/c++/12/bits/stl_bvector.h \
+ /usr/include/c++/12/bits/vector.tcc \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleDefinition.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Units/PhysicalConstants.h \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Units/SystemOfUnits.h \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4PDefManager.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/pwdefs.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4AutoLock.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Threading.hh \
+ /usr/include/c++/12/chrono /usr/include/c++/12/condition_variable \
+ /usr/include/c++/12/bits/shared_ptr.h \
+ /usr/include/c++/12/bits/shared_ptr_base.h \
+ /usr/include/c++/12/bits/allocated_ptr.h \
+ /usr/include/c++/12/bits/unique_ptr.h \
+ /usr/include/c++/12/ext/concurrence.h /usr/include/c++/12/future \
+ /usr/include/c++/12/bits/atomic_futex.h \
+ /usr/include/c++/12/bits/std_function.h \
+ /usr/include/c++/12/bits/std_thread.h /usr/include/c++/12/thread \
+ /usr/include/c++/12/bits/this_thread_sleep.h \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleDefinition.icc \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleTable.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleTableIterator.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleTable.icc \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Ions.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleTable.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleDefinition.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Geantino.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleGun.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4VPrimaryGenerator.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ThreeVector.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4PrimaryVertex.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Allocator.hh \
+ /usr/include/c++/12/cstddef \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4AllocatorPool.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4PrimaryParticle.hh \
+ /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleMomentum.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/Randomize.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Random/Randomize.h \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Random/DualRand.h \
@@ -240,11 +279,7 @@ CMakeFiles/LAB2023.dir/src/LabPrimaryGeneratorAction.cc.o: \
  /usr/include/c++/12/fstream \
  /usr/include/x86_64-linux-gnu/c++/12/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++io.h \
- /usr/include/c++/12/bits/fstream.tcc /usr/include/c++/12/vector \
- /usr/include/c++/12/bits/stl_uninitialized.h \
- /usr/include/c++/12/bits/stl_vector.h \
- /usr/include/c++/12/bits/stl_bvector.h \
- /usr/include/c++/12/bits/vector.tcc \
+ /usr/include/c++/12/bits/fstream.tcc \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Random/RandomEngine.icc \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Random/JamesRandom.h \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Random/MixMaxRng.h \
@@ -262,11 +297,6 @@ CMakeFiles/LAB2023.dir/src/LabPrimaryGeneratorAction.cc.o: \
  /usr/include/c++/12/memory \
  /usr/include/c++/12/bits/stl_raw_storage_iter.h \
  /usr/include/c++/12/bits/align.h /usr/include/c++/12/bit \
- /usr/include/c++/12/bits/unique_ptr.h \
- /usr/include/c++/12/bits/shared_ptr.h \
- /usr/include/c++/12/bits/shared_ptr_base.h \
- /usr/include/c++/12/bits/allocated_ptr.h \
- /usr/include/c++/12/ext/concurrence.h \
  /usr/include/c++/12/bits/shared_ptr_atomic.h \
  /usr/include/c++/12/backward/auto_ptr.h \
  /usr/include/c++/12/pstl/glue_memory_defs.h \
@@ -302,13 +332,6 @@ CMakeFiles/LAB2023.dir/src/LabPrimaryGeneratorAction.cc.o: \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Random/RandStudentT.icc \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Event.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/evtdefs.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Allocator.hh \
- /usr/include/c++/12/cstddef \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4AllocatorPool.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4PrimaryVertex.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/pwdefs.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ThreeVector.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4PrimaryParticle.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4HCofThisEvent.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4VHitsCollection.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4DCofThisEvent.hh \
@@ -318,8 +341,8 @@ CMakeFiles/LAB2023.dir/src/LabPrimaryGeneratorAction.cc.o: \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4VUserEventInformation.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Profiler.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Profiler.icc \
- /usr/include/c++/12/functional /usr/include/c++/12/bits/std_function.h \
- /usr/include/c++/12/unordered_map /usr/include/c++/12/bits/hashtable.h \
+ /usr/include/c++/12/functional /usr/include/c++/12/unordered_map \
+ /usr/include/c++/12/bits/hashtable.h \
  /usr/include/c++/12/bits/hashtable_policy.h \
  /usr/include/c++/12/bits/enable_special_members.h \
  /usr/include/c++/12/bits/unordered_map.h \
@@ -332,19 +355,6 @@ CMakeFiles/LAB2023.dir/src/LabPrimaryGeneratorAction.cc.o: \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4GeneralParticleSource.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Event.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4SingleParticleSource.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4VPrimaryGenerator.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleMomentum.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleDefinition.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Units/PhysicalConstants.h \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/CLHEP/Units/SystemOfUnits.h \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4PDefManager.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4AutoLock.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Threading.hh \
- /usr/include/c++/12/chrono /usr/include/c++/12/condition_variable \
- /usr/include/c++/12/future /usr/include/c++/12/bits/atomic_futex.h \
- /usr/include/c++/12/bits/std_thread.h /usr/include/c++/12/thread \
- /usr/include/c++/12/bits/this_thread_sleep.h \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleDefinition.icc \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4SPSPosDistribution.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4Navigator.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/geomdefs.hh \
@@ -444,8 +454,4 @@ CMakeFiles/LAB2023.dir/src/LabPrimaryGeneratorAction.cc.o: \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4UItokenNum.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ApplicationState.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4GeneralParticleSourceData.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleTable.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleTableIterator.hh \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleTable.icc \
- /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4ParticleDefinition.hh \
  /home/francesco/software/geant4/geant4-v11.1.1-install/include/Geant4/G4SystemOfUnits.hh

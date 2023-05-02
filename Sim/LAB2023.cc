@@ -4,6 +4,7 @@
 #include "G4SystemOfUnits.hh"
 #include "QGSP_BERT.hh"
 #include "G4OpticalPhysics.hh"
+#include "G4RadioactiveDecayPhysics.hh"
 #include "G4EmStandardPhysics_option4.hh"
 #include "G4StepLimiterPhysics.hh"
 #include "G4RunManager.hh"
@@ -167,6 +168,7 @@ int main(int argc, char** argv) {
   physicsList->ReplacePhysics(new G4EmStandardPhysics_option4()); // replace EM physics option (try option3 and option4)
   //physicsList->ReplacePhysics(new G4EmLivermorePhysics()); // replace EM physics with Livermore
   physicsList->RegisterPhysics(new G4OpticalPhysics(info->optPhysVerb)); // add optical physics to list
+  physicsList->RegisterPhysics(new G4RadioactiveDecayPhysics());
   runManager->SetUserInitialization(physicsList);
   // options 3 and 4 are more accurate than 1 and 2 for low energy
   // they have the same models for gammas

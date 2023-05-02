@@ -1,0 +1,6 @@
+
+/vis/open OGL
+/vis/scene/create
+/vis/viewer/create
+/vis/viewer/list
+/vis/viewer/set myViewer
