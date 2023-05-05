@@ -143,7 +143,7 @@ int main(int argc, char** argv) {
     info->greaseToSiPMFinish = "polished";    
     
     // Primary beam settings
-    info->numOfEvents         = 100;                          // number of primary particles to generate
+    info->numOfEvents         = 10000;                          // number of primary particles to generate
  
  
     // ****************************************************************
@@ -209,7 +209,7 @@ int main(int argc, char** argv) {
     delete ui;
   }
   
-  G4String posList[] = {"-180.0", "-140.0", "-100.0", "-60.0", "-20.0", "0.0", "20.0", "60.0", "100.0", "140.0", "180.0"};
+  G4String posList[] = {"-200.0", "-160.0", "-120.0", "-80.0", "-40.0", "0.0", "40.0", "80.0", "120.0", "160.0", "200.0"};
   //G4String posList[] = {"-180.0", "180.0"};
   G4int numPos = sizeof(posList)/sizeof(G4String);
   
