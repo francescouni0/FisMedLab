@@ -75,9 +75,9 @@ int main(int argc, char** argv) {
   // Choose the Random engine
   G4Random::setTheEngine(new CLHEP::RanecuEngine);
 
-  //G4RunManager * runManager = new G4RunManager;
+  G4RunManager * runManager = new G4RunManager;
   
-  G4MTRunManager * runManager = new G4MTRunManager;
+  //G4MTRunManager * runManager = new G4MTRunManager;
   runManager->SetNumberOfThreads(nThreads);
   
   
@@ -143,7 +143,7 @@ int main(int argc, char** argv) {
     info->greaseToSiPMFinish = "polished";    
     
     // Primary beam settings
-    info->numOfEvents         = 1000;                          // number of primary particles to generate
+    info->numOfEvents         = 10000;                          // number of primary particles to generate
  
  
     // ****************************************************************
