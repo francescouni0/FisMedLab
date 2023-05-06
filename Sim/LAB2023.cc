@@ -77,8 +77,8 @@ int main(int argc, char** argv) {
 
   G4RunManager * runManager = new G4RunManager;
   
-  //G4MTRunManager * runManager = new G4MTRunManager;
-  runManager->SetNumberOfThreads(nThreads);
+  G4MTRunManager * runManager = new G4MTRunManager;
+  //runManager->SetNumberOfThreads(nThreads);
   
   
     /* get all information */
