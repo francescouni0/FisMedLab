@@ -56,7 +56,7 @@ int main(int argc, char** argv) {
   G4String macro;
   G4String session;
 
-  G4int nThreads = 2;
+  G4int nThreads = 4;
 
   for ( G4int i=1; i<argc; i=i+2 ) {
     if      ( G4String(argv[i]) == "-m" ) macro   = argv[i+1];
@@ -143,7 +143,7 @@ int main(int argc, char** argv) {
     info->greaseToSiPMFinish = "polished";    
     
     // Primary beam settings
-    info->numOfEvents         = 10000;                          // number of primary particles to generate
+    info->numOfEvents         = 1000;                          // number of primary particles to generate
  
  
     // ****************************************************************
