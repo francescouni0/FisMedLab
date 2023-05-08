@@ -1,0 +1,25 @@
+Information on the primary beam:
+number of simulated events: 10000
+type of particle: Na22
+beam energy: 0.000 keV
+beam position: 0.00 mm, -5.00 mm, 200.00 mm
+beam direction: 0.00, 1.00, 0.00 
+
+World dimensions: 1000.00 m, 1000.00 m, 1000.00 m 
+Scintillator dimensions: 20.00 mm, 3.00 mm, 440.00 mm
+Scintillator position: 0.00 mm, 0.00 mm, 0.00 mm
+Grease thickness: 1000.00 um
+Wrapping reflectivity: 0.9900
+
+Optical interfaces:
+scintToGreaseType: dielectric_dielectric, scintToGreaseModel: unified, scintToGreaseModel: polished 
+greaseToScintType: dielectric_dielectric, greaseToScintModel: unified, greaseToScintFinish: polished 
+greaseToSiPMType: dielectric_dielectric, greaseToSiPMModel: unified, greaseToSiPMFinish: polished 
+
+Output files headers:
+detectN_PosZ.raw:
+detection(float(info->event_id), track->GetKineticEnergy()/eV, time/ns, pos[0]/mm, pos[1]/mm)
+
+Simulation seed: 1683564775
+
+timers (s): 0.000001 (real), 0.000000 (system), 8577.490000 (user)
