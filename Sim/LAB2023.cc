@@ -56,7 +56,7 @@ int main(int argc, char** argv) {
   G4String macro;
   G4String session;
 
-  G4int nThreads = 2;
+  G4int nThreads = 4;
 
   for ( G4int i=1; i<argc; i=i+2 ) {
     if      ( G4String(argv[i]) == "-m" ) macro   = argv[i+1];
@@ -77,9 +77,9 @@ int main(int argc, char** argv) {
 
   G4RunManager * runManager = new G4RunManager;
   
-  G4MTRunManager * runManager = new G4MTRunManager;
+  //G4MTRunManager * runManager = new G4MTRunManager;
   //runManager->SetNumberOfThreads(nThreads);
-  
+  //
   
     /* get all information */
     LabInfo *info = NULL;
