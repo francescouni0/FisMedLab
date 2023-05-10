@@ -144,7 +144,7 @@ popt, cov =curve_fit(func, l, np.log(Net),sigma=Sigma) # fit(channel, energy)
 
 
 print(np.sqrt(cov))
-print(popt)
+print('Results', popt)
 
 #TEST R^2
 
