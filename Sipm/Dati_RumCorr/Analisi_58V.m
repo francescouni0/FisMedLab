@@ -57,6 +57,13 @@ lambda_1 = ampl_fit.b
 ci = confint(ampl_fit);
 err_lambda_1 = (ci(2,2)-ci(1,2))/2
 err_a_0 = (ci(2,1)-ci(1,1))/2
+
+N_0 = occ_fit.a
+lambda_2 = occ_fit.b
+ci = confint(occ_fit)
+err_lambda_2 = (ci(2,2)-ci(1,2))/2
+err_N_0 = (ci(2,1)-ci(1,1))/2
+
 mask = dt<165;
 residuals = occ(mask) - fit_func2(occ_fit.a, occ_fit.b, occ_fit.c, dt(mask));
 N_rc = round(sum(residuals))
