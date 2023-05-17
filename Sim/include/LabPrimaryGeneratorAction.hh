@@ -5,11 +5,6 @@
 #include "G4VUserPrimaryGeneratorAction.hh"
 #include "globals.hh"
 #include "LabInfo.hh"
-#include "G4IonTable.hh"
-#include "G4ParticleTable.hh"
-#include "G4ParticleDefinition.hh"
-#include "G4Geantino.hh"
-#include "G4ParticleGun.hh"
 
 class G4ParticleGun;
 class G4GeneralParticleSource;
@@ -31,7 +26,6 @@ class LabPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 
   private:
     G4GeneralParticleSource* fParticleGun;
-    G4ParticleGun* fParticleGun1;
 //     LabPrimaryGeneratorMessenger* fGunMessenger;
     LabInfo *info; 
 };
