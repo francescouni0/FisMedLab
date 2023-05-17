@@ -214,7 +214,7 @@ int main(int argc, char** argv) {
   for (int currPos = 0; currPos < numPos; currPos++){
     
     G4cout << "beam position: " << posList[currPos] << " mm" << G4endl;
-    UImanager->ApplyCommand("/gps/position   0.0 -5.0 "+posList[currPos]+" mm");
+    UImanager->ApplyCommand("/gps/position   0.0 -15.0 "+posList[currPos]+" mm");
     
     // clears output vectors before run
     detection_vector1.clear();         
@@ -239,13 +239,13 @@ int main(int argc, char** argv) {
 
   // Write results to output
     
-    std::ofstream file_out2("./detect1_"+posList[currPos]+".raw");
+    std::ofstream file_out2("./detect1_15mm"+posList[currPos]+".raw");
     for (uint32_t i=0; i<detection_vector1.size(); i++) {
       file_out2.write(reinterpret_cast<char*>(&detection_vector1[i]), sizeof(detection));
     }
     file_out2.close();
   
-    std::ofstream file_out3("./detect2_"+posList[currPos]+".raw");
+    std::ofstream file_out3("./detect2_15mm"+posList[currPos]+".raw");
     for (uint32_t i=0; i<detection_vector2.size(); i++) {
       file_out3.write(reinterpret_cast<char*>(&detection_vector2[i]), sizeof(detection));
     }
