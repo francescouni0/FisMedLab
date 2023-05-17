@@ -2,7 +2,7 @@ Information on the primary beam:
 number of simulated events: 10000
 type of particle: gamma
 beam energy: 511.000 keV
-beam position: 0.00 mm, -60.00 mm, 200.00 mm
+beam position: 0.00 mm, -90.00 mm, 200.00 mm
 beam direction: 0.00, 1.00, 0.00 
 
 World dimensions: 1000.00 m, 1000.00 m, 1000.00 m 
@@ -20,6 +20,6 @@ Output files headers:
 detectN_PosZ.raw:
 detection(float(info->event_id), track->GetKineticEnergy()/eV, time/ns, pos[0]/mm, pos[1]/mm)
 
-Simulation seed: 1684357565
+Simulation seed: 1684358087
 
-timers (s): 0.000000 (real), 0.000000 (system), 455.980000 (user)
+timers (s): 0.000000 (real), 0.000000 (system), 456.630000 (user)
