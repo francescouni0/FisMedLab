@@ -3,8 +3,8 @@
 /event/verbose 0
 /gps/verbose 0
 
-/gps/particle   gamma
-/gps/energy     511 keV
+/gps/particle   e-
+/gps/energy     546 keV
 /gps/time       0.0 ns
 /gps/direction  0.0 1.0 0.0
 

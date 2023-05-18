@@ -239,13 +239,13 @@ int main(int argc, char** argv) {
 
   // Write results to output
     
-    std::ofstream file_out2("./detect1_110mm"+posList[currPos]+".raw");
+    std::ofstream file_out2("./detect1_110mm_b"+posList[currPos]+".raw");
     for (uint32_t i=0; i<detection_vector1.size(); i++) {
       file_out2.write(reinterpret_cast<char*>(&detection_vector1[i]), sizeof(detection));
     }
     file_out2.close();
   
-    std::ofstream file_out3("./detect2_110mm"+posList[currPos]+".raw");
+    std::ofstream file_out3("./detect2_110mm_b"+posList[currPos]+".raw");
     for (uint32_t i=0; i<detection_vector2.size(); i++) {
       file_out3.write(reinterpret_cast<char*>(&detection_vector2[i]), sizeof(detection));
     }
