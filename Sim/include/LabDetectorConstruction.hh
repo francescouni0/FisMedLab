@@ -47,11 +47,11 @@ class LabDetectorConstruction : public G4VUserDetectorConstruction
 
     G4Material *Air, *EJ200, *Grease;
      
-    G4Box *solidWorld, *solidScint, *solidGrease1, *solidGrease2, *solidSiPM1, *solidSiPM2; 
+    G4Box *solidWorld, *solidScint, *solidGrease1, *solidGrease2, *solidSiPM1, *solidSiPM2, *solidScint1, *solidGrease3, *solidGrease4, *solidSiPM3, *solidSiPM4; 
     
-    G4LogicalVolume  *logicWorld, *logicScint, *logicGrease1, *logicGrease2, *logicSiPM1, *logicSiPM2;
+    G4LogicalVolume  *logicWorld, *logicScint, *logicGrease1, *logicGrease2, *logicSiPM1, *logicSiPM2,*logicScint1, *logicGrease3, *logicGrease4, *logicSiPM3, *logicSiPM4;
 
-    G4VPhysicalVolume *physWorld, *physScint, *physGrease1, *physGrease2, *physSiPM1, *physSiPM2;
+    G4VPhysicalVolume *physWorld, *physScint, *physGrease1, *physGrease2, *physSiPM1, *physSiPM2, *physScint1, *physGrease3, *physGrease4, *physSiPM3, *physSiPM4;
     
     G4OpticalSurface *ScintToLateralWrapping, *ScintToGrease, *GreaseToScint, *GreaseToSiPM, *SiPMToGrease, *WrapToScint;
     
@@ -59,6 +59,10 @@ class LabDetectorConstruction : public G4VUserDetectorConstruction
 
     LabInfo *info;
 };
+
+
+
+
 
 #endif
 

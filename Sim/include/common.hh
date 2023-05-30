@@ -72,5 +72,9 @@ public:
 
 extern tbb::concurrent_vector<detection> detection_vector1;
 extern tbb::concurrent_vector<detection> detection_vector2;
+extern tbb::concurrent_vector<detection> detection_vector3;
+extern tbb::concurrent_vector<detection> detection_vector4;
+
+
 
 #endif

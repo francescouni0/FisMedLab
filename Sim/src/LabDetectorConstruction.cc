@@ -125,11 +125,20 @@ void LabDetectorConstruction::constructWorld() {
 void LabDetectorConstruction::constructScintillator() {
   
     solidScint = new G4Box("Scintillator", 0.5*info->scintSize[0]*mm, 0.5*info->scintSize[1]*mm, 0.5*info->scintSize[2]*mm);  
+    
     logicScint = new G4LogicalVolume(solidScint, EJ200, "Scintillator");            
     physScint  = new G4PVPlacement(0, G4ThreeVector(info->scintPos[0]*mm, info->scintPos[1]*mm, info->scintPos[2]*mm), logicScint, "Scintillator", logicWorld, false, 0, checkOverlaps);  
     
     fStepLimit = new G4UserLimits(info->stepLimiter);
     logicScint->SetUserLimits(fStepLimit);
+
+    solidScint1 = new G4Box("1illator", 0.5*info->scintSize[0]*mm, (0.5*info->scintSize[1])*mm, 0.5*info->scintSize[2]*mm);  
+    
+    logicScint1 = new G4LogicalVolume(solidScint1, EJ200, "Scintillator");            
+    physScint1  = new G4PVPlacement(0, G4ThreeVector(info->scintPos[0]*mm, (info->scintPos[1]+220)*mm, info->scintPos[2]*mm), logicScint1, "Scintillator", logicWorld, false, 0, checkOverlaps);  
+    
+    fStepLimit = new G4UserLimits(info->stepLimiter);
+    logicScint1->SetUserLimits(fStepLimit);
     
 }
 
@@ -149,6 +158,20 @@ void LabDetectorConstruction::constructGrease() {
     physGrease2  = new G4PVPlacement(0, G4ThreeVector(info->scintPos[0]*mm, info->scintPos[1]*mm, -(info->scintPos[2]*mm + 0.5*info->scintSize[2]*mm + 0.5*info->greaseThickness*um)), logicGrease2, "Grease2", logicWorld, false, 0, checkOverlaps);
     
     logicGrease2->SetUserLimits(fStepLimit);
+
+
+    solidGrease3 = new G4Box("Grease1", 0.5*info->scintSize[0]*mm, (0.5*info->scintSize[1])*mm, 0.5*info->greaseThickness*um);  
+    logicGrease3 = new G4LogicalVolume(solidGrease3, Grease, "Grease1");            
+    physGrease3  = new G4PVPlacement(0, G4ThreeVector(info->scintPos[0]*mm, (info->scintPos[1]+220)*mm, info->scintPos[2]*mm + 0.5*info->scintSize[2]*mm + 0.5*info->greaseThickness*um), logicGrease3, "Grease1", logicWorld, false, 0, checkOverlaps);  
+    
+    fStepLimit = new G4UserLimits(info->stepLimiter);
+    logicGrease3->SetUserLimits(fStepLimit);
+    
+    solidGrease4 = new G4Box("Grease2", 0.5*info->scintSize[0]*mm, (0.5*info->scintSize[1])*mm, 0.5*info->greaseThickness*um);
+    logicGrease4 = new G4LogicalVolume(solidGrease4, Grease, "Grease2");
+    physGrease4  = new G4PVPlacement(0, G4ThreeVector(info->scintPos[0]*mm, (info->scintPos[1]+220)*mm, -(info->scintPos[2]*mm + 0.5*info->scintSize[2]*mm + 0.5*info->greaseThickness*um)), logicGrease4, "Grease2", logicWorld, false, 0, checkOverlaps);
+    
+    logicGrease4->SetUserLimits(fStepLimit);
 }
 
 
@@ -166,6 +189,19 @@ void LabDetectorConstruction::constructSiPM() { // check rindex! <--------------
     physSiPM2  = new G4PVPlacement(0, G4ThreeVector(info->scintPos[0]*mm, info->scintPos[1]*mm, -(info->scintPos[2]*mm + 0.5*info->scintSize[2]*mm + info->greaseThickness*um + 0.5*info->greaseThickness*um)), logicSiPM2, "SiPM2", logicWorld, false, 0, checkOverlaps);
     
     logicSiPM2->SetUserLimits(fStepLimit);
+  
+    solidSiPM3 = new G4Box("SiPM1", 0.5*info->scintSize[0]*mm, (0.5*info->scintSize[1])*mm, 0.5*info->greaseThickness*um);  
+    logicSiPM3 = new G4LogicalVolume(solidSiPM3, Air, "SiPM1");            
+    physSiPM3  = new G4PVPlacement(0, G4ThreeVector(info->scintPos[0]*mm, (info->scintPos[1]+220)*mm, +(info->scintPos[2]*mm + 0.5*info->scintSize[2]*mm + info->greaseThickness*um + 0.5*info->greaseThickness*um)), logicSiPM3, "SiPM1", logicWorld, false, 0, checkOverlaps);  
+    
+    fStepLimit = new G4UserLimits(info->stepLimiter);
+    logicSiPM3->SetUserLimits(fStepLimit);
+    
+    solidSiPM4 = new G4Box("SiPM2", 0.5*info->scintSize[0]*mm, (0.5*info->scintSize[1])*mm, 0.5*info->greaseThickness*um);
+    logicSiPM4 = new G4LogicalVolume(solidSiPM4, Air, "SiPM2");
+    physSiPM4  = new G4PVPlacement(0, G4ThreeVector(info->scintPos[0]*mm, (info->scintPos[1]+220)*mm, -(info->scintPos[2]*mm + 0.5*info->scintSize[2]*mm + info->greaseThickness*um + 0.5*info->greaseThickness*um)), logicSiPM4, "SiPM2", logicWorld, false, 0, checkOverlaps);
+    
+    logicSiPM4->SetUserLimits(fStepLimit);
 }
 
 G4SurfaceType getEnumSurfaceType(std::string input){
@@ -338,6 +374,135 @@ void LabDetectorConstruction::constructOpticalSurfaces() {
     SiPMToGrease->SetMaterialPropertiesTable(BlackSurfaceMPT);
     new G4LogicalBorderSurface("SiPMToGrease1", physSiPM1, physGrease1, SiPMToGrease);
     new G4LogicalBorderSurface("SiPMToGrease2", physSiPM2, physGrease2, SiPMToGrease);
+
+
+
+
+    //**************************+ALTRO DETECTOR**************************//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+    // ************ Scintillator to Lateral Wrapping (4 sides) ************ 
+
+    ScintToLateralWrapping = new G4OpticalSurface("ScintToLateralWrapping");
+    
+    new G4LogicalBorderSurface("ScintToLateralWrapping", physScint1, physWorld, ScintToLateralWrapping);
+
+    ScintToLateralWrapping->SetType( getEnumSurfaceType(info->scintToLateralWrappingType) );
+    ScintToLateralWrapping->SetModel(getEnumSurfaceModel(info->scintToLateralWrappingModel) );
+    ScintToLateralWrapping->SetFinish(getEnumSurfaceFinish(info->scintToLateralWrappingFinish) );
+    
+    if (info->scintToLateralWrappingFinish == "polishedbackpainted" || info->scintToLateralWrappingFinish == "groundbackpainted")  { 
+      G4double sigma_alpha = 0.0;
+      ScintToLateralWrapping->SetSigmaAlpha(sigma_alpha);
+    }
+    
+    assert(sizeof(reflectivity_wrap) == sizeof(en_wrap));
+    WrappingProperty->AddProperty("REFLECTIVITY", en_wrap, reflectivity_wrap, n_w);
+    ScintToLateralWrapping->SetMaterialPropertiesTable(WrappingProperty);
+    
+    // ************ Scintillator to Grease ************ 
+    
+    ScintToGrease = new G4OpticalSurface("ScintToGrease");
+    
+    ScintToGrease->SetType( getEnumSurfaceType(info->scintToGreaseType) );
+    ScintToGrease->SetModel(getEnumSurfaceModel(info->scintToGreaseModel) );
+    ScintToGrease->SetFinish(getEnumSurfaceFinish(info->scintToGreaseFinish) );
+    if (info->scintToGreaseFinish == "polishedbackpainted" || info->scintToGreaseFinish == "groundbackpainted")  { 
+      G4double sigma_alpha = 0.0;
+      ScintToGrease->SetSigmaAlpha(sigma_alpha);
+    }
+    
+    new G4LogicalBorderSurface("ScintToGrease1", physScint1, physGrease3, ScintToGrease);
+    new G4LogicalBorderSurface("ScintToGrease2", physScint1, physGrease4, ScintToGrease);
+
+    // ************ Grease to Scintillator ************ 
+    
+    GreaseToScint = new G4OpticalSurface("GreaseToScint");
+    
+    GreaseToScint->SetType( getEnumSurfaceType(info->greaseToScintType) );
+    GreaseToScint->SetModel(getEnumSurfaceModel(info->greaseToScintModel) );
+    GreaseToScint->SetFinish(getEnumSurfaceFinish(info->greaseToScintFinish) );
+    if (info->greaseToScintFinish == "polishedbackpainted" || info->greaseToScintFinish == "groundbackpainted")  { 
+      G4double sigma_alpha = 0.0;
+      GreaseToScint->SetSigmaAlpha(sigma_alpha);
+    }
+    
+    new G4LogicalBorderSurface("GreaseToScint1", physGrease3, physScint1, GreaseToScint);
+    new G4LogicalBorderSurface("GreaseToScint2", physGrease4, physScint1, GreaseToScint);
+    
+    // ************ Grease to Detector ************ 
+    
+    GreaseToSiPM = new G4OpticalSurface("GreaseToSiPM");
+    
+    GreaseToSiPM->SetType( getEnumSurfaceType(info->greaseToSiPMType) );
+    GreaseToSiPM->SetModel(getEnumSurfaceModel(info->greaseToSiPMModel) );
+    GreaseToSiPM->SetFinish(getEnumSurfaceFinish(info->greaseToSiPMFinish) );
+    if (info->greaseToSiPMFinish == "polishedbackpainted" || info->greaseToSiPMFinish == "groundbackpainted")  { 
+      G4double sigma_alpha = 0.0;
+      GreaseToSiPM->SetSigmaAlpha(sigma_alpha);
+    }
+    
+    new G4LogicalBorderSurface("GreaseToSiPM1", physGrease3, physSiPM3, GreaseToSiPM);
+    new G4LogicalBorderSurface("GreaseToSiPM2", physGrease4, physSiPM4, GreaseToSiPM);
+    
+    // This step is needed so that the detector is recognized as sensitive
+    // See SteppingAction
+    
+    
+    
+    assert(sizeof(reflectivity) == sizeof(pp));
+    
+    assert(sizeof(efficiency) == sizeof(pp));
+    
+    ScintSiPMProperty->AddProperty("REFLECTIVITY", pp, reflectivity, num);
+    ScintSiPMProperty->AddProperty("EFFICIENCY",   pp, efficiency,   num);
+    
+    GreaseToSiPM->SetMaterialPropertiesTable(ScintSiPMProperty);
+    
+    // Settings for all black surfaces (in case any photon is reflected)
+    assert(sizeof(reflectivity_black) == sizeof(en_black));
+    assert(sizeof(efficiency_black) == sizeof(en_black));
+    BlackSurfaceMPT->AddProperty("REFLECTIVITY", en_black, reflectivity_black, n_black);
+    BlackSurfaceMPT->AddProperty("EFFICIENCY",   en_black, efficiency_black,   n_black);
+    
+    // ************ Wrapping to Scintillator ************ 
+    WrapToScint = new G4OpticalSurface("WrapToScint");
+    WrapToScint->SetMaterialPropertiesTable(BlackSurfaceMPT);
+    new G4LogicalBorderSurface("WrapToScint", physWorld, physScint1, WrapToScint);
+    
+    // ************ Detector to Grease ************ 
+    SiPMToGrease = new G4OpticalSurface("SiPMToGrease");
+    SiPMToGrease->SetMaterialPropertiesTable(BlackSurfaceMPT);
+    new G4LogicalBorderSurface("SiPMToGrease1", physSiPM3, physGrease3, SiPMToGrease);
+    new G4LogicalBorderSurface("SiPMToGrease2", physSiPM4, physGrease4, SiPMToGrease);
+
+
+
     
    
 }

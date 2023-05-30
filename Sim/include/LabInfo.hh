@@ -14,6 +14,7 @@
 #include "G4Types.hh"
 #include "G4ThreeVector.hh"
 
+
 class LabInfo {
 
 public:
@@ -37,6 +38,7 @@ public:
     
     // Positions for detector construction
     G4double scintPos[3];
+
     
     G4double enRange[2];
     
@@ -66,7 +68,7 @@ public:
     std::atomic<G4int> detectedPhotonsCounter;
     
     // Optical interactions counters
-    G4int FresnelRefraction, FresnelReflection, TotalInternalReflection, LambertianReflection, LobeReflection, SpikeReflection, BackScattering, Absorption, Detection1, Detection2, NotAtBoundary, SameMaterial, /*StepTooSmall,*/ NoRINDEX;
+    G4int FresnelRefraction, FresnelReflection, TotalInternalReflection, LambertianReflection, LobeReflection, SpikeReflection, BackScattering, Absorption, Detection1, Detection2,Detection3,Detection4, NotAtBoundary, SameMaterial, /*StepTooSmall,*/ NoRINDEX;
     
     //////////////////////////////////////////////////////////////////////
     

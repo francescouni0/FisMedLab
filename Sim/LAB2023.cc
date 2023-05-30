@@ -24,6 +24,9 @@
 // currently multithread not active
 tbb::concurrent_vector<detection> detection_vector1;
 tbb::concurrent_vector<detection> detection_vector2;
+tbb::concurrent_vector<detection> detection_vector3;
+tbb::concurrent_vector<detection> detection_vector4;
+
 
 namespace {
 
@@ -111,7 +114,8 @@ int main(int argc, char** argv) {
     info->scintPos[0] 	      =  0.0; // mm
     info->scintPos[1]         =  0.0; // mm
     info->scintPos[2]         =  0.0; // mm
-    
+
+
     // Optical grease thickness
     info->greaseThickness     = 1000; // um
     
@@ -143,6 +147,12 @@ int main(int argc, char** argv) {
     
     // Primary beam settings
     info->numOfEvents         = 10000;                          // number of primary particles to generate
+
+
+
+
+
+
  
  
     // ****************************************************************
@@ -160,6 +170,7 @@ int main(int argc, char** argv) {
   
   // Detector construction
   runManager-> SetUserInitialization(new LabDetectorConstruction(info));
+
 
   // Physics list
   G4VModularPhysicsList* physicsList = new QGSP_BERT;
@@ -214,7 +225,7 @@ int main(int argc, char** argv) {
   for (int currPos = 0; currPos < numPos; currPos++){
     
     G4cout << "beam position: " << posList[currPos] << " mm" << G4endl;
-    UImanager->ApplyCommand("/gps/position   0.0 -110.0 "+posList[currPos]+" mm");
+    UImanager->ApplyCommand("/gps/position   0.0 110.0 "+posList[currPos]+" mm");
     
     // clears output vectors before run
     detection_vector1.clear();         
@@ -233,7 +244,9 @@ int main(int argc, char** argv) {
   
     info->event_id = 0; // updated in PrimaryGeneratorAction to return event number
     info->Detection1 = 0;       
-    info->Detection2 = 0;       
+    info->Detection2 = 0;
+    info->Detection3 = 0;
+    info->Detection4 = 0;         
   
     runManager->BeamOn(info->numOfEvents); // runs simulation
 
@@ -250,6 +263,18 @@ int main(int argc, char** argv) {
       file_out3.write(reinterpret_cast<char*>(&detection_vector2[i]), sizeof(detection));
     }
     file_out3.close();
+
+    std::ofstream file_out4("./detect3_110mm_b"+posList[currPos]+".raw");
+    for (uint32_t i=0; i<detection_vector3.size(); i++) {
+      file_out4.write(reinterpret_cast<char*>(&detection_vector3[i]), sizeof(detection));
+    }
+    file_out4.close();
+  
+    std::ofstream file_out5("./detect4_110mm_b"+posList[currPos]+".raw");
+    for (uint32_t i=0; i<detection_vector4.size(); i++) {
+      file_out5.write(reinterpret_cast<char*>(&detection_vector4[i]), sizeof(detection));
+    }
+    file_out5.close();
     
     info->dump();
     
@@ -257,6 +282,9 @@ int main(int argc, char** argv) {
       G4cout << G4endl;
       G4cout << "Detection1:              " << info->Detection1 << G4endl;
       G4cout << "Detection2:              " << info->Detection2 << G4endl;
+      G4cout << "Detection3:              " << info->Detection3 << G4endl;
+      G4cout << "Detection4:              " << info->Detection4 << G4endl;
+
       G4cout << G4endl;
   
     // Job termination
