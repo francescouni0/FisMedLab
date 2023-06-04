@@ -103,7 +103,7 @@ void LabSteppingAction::UserSteppingAction(const G4Step* step){
               detection_vector2.push_back(  detection(float(info->event_id), track->GetKineticEnergy()/eV, time/ns, pos[0]/mm, pos[1]/mm));
               info->Detection2++;
         } 
-        else if (thePrePV=="Grease3" && thePostPV=="SiPM3"){
+        if (thePrePV=="Grease3" && thePostPV=="SiPM3"){
             // append to detection_vector the current info
               detection_vector3.push_back(  detection(float(info->event_id), track->GetKineticEnergy()/eV, time/ns, pos[0]/mm, pos[1]/mm));
               info->Detection3++;

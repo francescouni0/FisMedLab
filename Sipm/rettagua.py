@@ -6,6 +6,8 @@ from pathlib import Path
 from scipy.integrate import simpson
 from scipy.stats import linregress
 from numpy import trapz
+from scipy.optimize import fsolve
+import scipy.interpolate as interpolate
 
 Path.cwd()
 peaks = np.loadtxt('peaks.txt')
@@ -85,8 +87,14 @@ parametri, covarianza = curve_fit(func1, V, gain, p0=(100000,0),sigma=sig)
 print('guadagno=',parametri)
 print(np.sqrt(covarianza[0,0]))
 
-plt.errorbar(V, gain,yerr=np.sqrt(covarianza[0,0]),fmt="o")
+plt.errorbar(V, gain,yerr=np.sqrt(covarianza[1,1]),fmt="o")
 plt.plot(V,func1(V,*parametri))
+
+
+
+
+print(-parametri[1]/parametri[0])
+print(np.sqrt(covarianza[1,1])/parametri[0])
 
 
 plt.show()
