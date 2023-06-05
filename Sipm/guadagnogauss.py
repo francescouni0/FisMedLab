@@ -283,5 +283,5 @@ C=[]
 
 p,c= curve_fit(func1,V_OV,gain,sigma=sig)
 
-print(p[0]*1.602e-19)
-print(np.sqrt(c[0,0])*1.602e-19)
+print(p[0]*1.602e-19*5000)
+print(np.sqrt(c[0,0])*1.602e-19*5000)
