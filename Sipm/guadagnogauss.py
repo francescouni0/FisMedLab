@@ -245,7 +245,7 @@ for j in range(7):
         gain[j]=par[j,0]
             
 
-parametri, covarianza = curve_fit(func1, V, gain, p0=(100000,0),sigma=sig)
+parametri, covarianza = curve_fit(func1, V, gain, p0=(1e6,-1e6),sigma=sig)
 print('guadagno=',parametri)
 print(np.sqrt(covarianza[0,0]))
 
@@ -274,14 +274,15 @@ plt.show()
 
 
 
+
 #STIMA CAPACITÀ MICROCELLA
 
 
-V_OV=np.array(V+(parametri[1]/parametri[0]))
+V_OV=np.array(V-(parametri[1]/parametri[0]))
 print(V_OV)
 C=[]
 
 p,c= curve_fit(func1,V_OV,gain,sigma=sig)
 
-print(p[0]*1.602e-19*5000)
-print(np.sqrt(c[0,0])*1.602e-19*5000)
+print(p[0]*1.602e-19)
+print(np.sqrt(c[0,0]))
